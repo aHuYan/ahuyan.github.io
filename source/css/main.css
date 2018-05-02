@@ -1,0 +1,97 @@
+/*字体安装开始*/
+@font-face{
+	font-family		:HanYiSongChangJian;
+	src				:url("../汉仪长宋简.ttf");
+}
+/*字体安装结束*/
+/*底部菜单开始*/
+.menu_left,.menu_right{
+	position		:absolute;
+	bottom			:23px;
+	left			:50%;
+	background-color:grey;
+	border-radius	:15px;
+	height			:30px;
+	transition-property: left;
+	transition-duration: 1.5s;
+}
+			
+#bottom_main_menu{
+	position		:absolute;
+	z-index			:2;
+	left			:50%;
+	bottom			:17px;
+	text-align		:center;
+	background-color:lightgrey;
+	border-radius	:20px;
+}
+			
+#bottom_menu{
+	bottom			:0px;
+	z-index			:1;
+}
+			
+#bottom_main_menu:hover ~ #bottom_menu_lab{
+	left			:40%;
+}		
+#bottom_main_menu:hover ~ #bottom_menu_blog{
+	left			:45%;
+}		
+#bottom_main_menu:hover ~ #bottom_menu_setting{
+	left			:56%;
+}		
+#bottom_main_menu:hover ~ #bottom_menu_about{
+	left			:61%;
+}
+#bottom_menu_lab:hover {
+	left			:40%;
+}
+#bottom_menu_blog:hover{
+	left			:45%;
+}
+#bottom_menu_setting:hover{
+	left			:56%;
+}
+#bottom_menu_about:hover{
+	left			:61%;
+}
+/*底部菜单结束*/
+/*主体内容开始*/
+body{
+	font-family		:HanYiSongChangJian;
+}
+section{
+	margin			:30px;
+	padding			:10px 5px;
+	box-shadow		: 2px 2px 1px lightgrey;
+}
+article{
+	line-height		:1.1em;
+	font-size		:1.4em;
+	text-indent		:20px;
+	font-family		:HanYiSongChangJian;
+	
+}			
+#article_time{
+	direction		:rtl;
+}
+a:link {
+	color			:black;
+	text-decoration	:none;
+}    
+a:visited {
+	color			:black;
+	text-decoration	:none;
+} 
+a:hover {
+	color			:black;
+	text-decoration	:none;
+}   
+a:active{
+	color			:black;
+	text-decoration	:none;
+} 
+::-moz-selection{
+	background-color:yellow;
+}
+/*主体内容结束*/
