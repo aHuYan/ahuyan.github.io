@@ -4,12 +4,13 @@
 		<meta charset="utf-8">
 		<title>胡言的主页</title>
 		<link rel="stylesheet" type="text/css" href="source/css/main.css" >
+		<link rel="stylesheet" type="text/css" href="source/css/index.css" >
 		<script src="source/js/main.js"></script>
 		<script src="source/js/index.js"></script>	
 	</head>
 	<body>
 		<section id="head">
-			<article id="header_articls">
+			<article id="header_articls" style="display:none">
 				<h2>胡言's courtyard</h2>
 				<p>本站是<strong>胡言</strong>用于做一些稀奇古怪的东西的。</p>
 				<p>包括了<b>个人博客</b>（上传一些关于NOIP、IT、Life...的文章），<b>实验室</b>（里面有自己写的小游戏以及一些web应用），<b>设置</b>（这里能够根据读者自己个性化设置本站），<b>关于</b>（你可以找到关于我的一些信息）。</p>
@@ -18,11 +19,23 @@
 				<p id="article_time"><time datetime="2018-05-01"><i>2018.5.1</i></time>
 			</article>
 			<article id="header_funs">
-				<h2>胡言's courtyard</h2>
+				<div id="head_name"><strong><p style="display:inline;">胡言&nbsp;&nbsp;&nbsp;</p></strong></div>
+				<p id="now_time" style="display:inline;"></p>
+				<p id="to_noip" style="display:inline"></p>
+				<p id="show_position" style="display:inline"></p>
 			</article>
 		</section>
 		<section id="main">
-
+			<div id="recent_read">
+				<p class="sub_head">最近阅读</p><hr>
+				<p id="recent_read_1"></p>
+				<p id="recent_read_2"></p>
+				<p id="recent_read_3"></p>
+			</div>
+			<div id="blog_list">
+				<p class="sub_head">最近博文</p><hr>
+				
+			</div>
 		</section>
 		<div id="bottom_menu">
 			<div id="bottom_main_menu" >

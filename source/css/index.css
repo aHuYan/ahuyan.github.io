@@ -1,0 +1,51 @@
+﻿/*首页的特殊样式*/
+#head{
+	box-shadow	: 2px 2px 1px lightgrey;
+}
+
+#article_time{
+	direction	:rtl;
+}
+
+#head_name{
+	display		:inline;
+	font-size	:1.4em;
+	float		:left;
+	text-align	:left;
+}
+
+#header_funs{
+	text-align	:right;
+}
+
+#main{
+	box-shadow	: 2px 2px 3px white;
+}
+
+hr{
+	margin		:5px;
+	color		:lightgrey;
+}
+
+.sub_head{
+	margin		:5px;
+	color		:#585858;
+
+}
+
+#recent_read{
+	float		:left;
+	width		:20%;
+	box-shadow	: 2px 2px 3px lightgrey;
+}
+
+[id |= recent_read_]{
+	text-overflow:ellipsis;
+}
+
+#blog_list{
+	float		:right;
+	width		:78%;
+	box-shadow	: 2px 2px 3px lightgrey;
+	
+}
