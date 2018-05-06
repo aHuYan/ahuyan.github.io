@@ -83,7 +83,7 @@ function add_bloglist(bloglist){
 		para.innerHTML="暂时没有博文哟~";
 		para.style.marginLeft="5px";
 	}else if(bloglist.number <= 7 && bloglist.number != 0){
-		for(var i=bloglist.number; i>=1; i--){
+		for(var i=bloglist.number-1; i>=0; i--){
 			var div=document.createElement("div");
 			document.getElementById("blog_list").appendChild(div);
 			div.setAttribute("class","list_blog");
