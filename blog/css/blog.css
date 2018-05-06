@@ -1,26 +1,7 @@
-﻿/*首页的特殊样式*/
-#head{
-	box-shadow	: 2px 2px 1px lightgrey;
-}
-
-#article_time{
-	direction	:rtl;
-}
-
-#head_name{
-	display		:inline;
-	float		:left;
-	text-align	:left;
-	font-size	:1.5em;
-	text-shadow: 3px 3px 3px #939393;
-}
-
-#header_funs{
-	text-align	:right;
-}
-
 #main{
 	box-shadow	: 2px 2px 3px white;
+	padding	:0px;
+	margin	:20px;;
 }
 
 hr{
@@ -30,13 +11,15 @@ hr{
 
 .sub_head{
 	margin		:5px;
+	font-size	:1.2em;
 	color		:#585858;
 
 }
 
-#recent_read{
+#blog_class{
 	float		:left;
 	width		:20%;
+	margin-top	:20px;
 	box-shadow	: 2px 2px 3px lightgrey;
 }
 
@@ -81,22 +64,4 @@ hr{
 	direction	:rtl;
 	font-size	:0.8em;
 	
-}
-
-#apps{
-	float		:left;
-	margin-top	:20px;
-	clear		:left;
-	width		:20%;
-	box-shadow	: 2px 2px 3px lightgrey;
-}
-
-#app_1,#link_1{margin:5px;}
-
-#links{
-	float		:left;
-	margin-top	:20px;
-	clear		:left;
-	width		:20%;
-	box-shadow	: 2px 2px 3px lightgrey;
 }

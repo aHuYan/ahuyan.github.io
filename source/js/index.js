@@ -70,7 +70,7 @@ function ask_json(){
 			var text=JSON.parse(request.responseText);
 			add_bloglist(text);
 		}else{
-			alert("json加载失败，请重试");
+			//alert("json加载失败，请重试");
 		}
 	};
 	request.send(null);  
@@ -84,8 +84,13 @@ function add_bloglist(bloglist){
 		para.style.marginLeft="5px";
 	}else if(bloglist.number <= 7 && bloglist.number != 0){
 		for(var i=bloglist.number-1; i>=0; i--){
+			var a=document.createElement("a");
+			document.getElementById("blog_list").appendChild(a);
+			a.setAttribute("href",bloglist.blog[i].url);
+			a.setAttribute("title",bloglist.blog[i].name);
+			
 			var div=document.createElement("div");
-			document.getElementById("blog_list").appendChild(div);
+			a.appendChild(div);
 			div.setAttribute("class","list_blog");
 			var divid="list_blog" + "_"+ i;
 			div.setAttribute("id",divid);
@@ -94,6 +99,16 @@ function add_bloglist(bloglist){
 			document.getElementById(divid).appendChild(title);
 			title.setAttribute("class","blog_title");
 			title.innerHTML=bloglist.blog[i].name;
+			
+			var date=document.createElement("p");
+			document.getElementById(divid).appendChild(date);
+			date.setAttribute("class","blog_date");
+			date.innerHTML=bloglist.blog[i].date;
+			
+			var profile=document.createElement("p");
+			document.getElementById(divid).appendChild(profile);
+			profile.setAttribute("class","blog_profile");
+			profile.innerHTML=bloglist.blog[i].profile;
 		}
 	}
 }

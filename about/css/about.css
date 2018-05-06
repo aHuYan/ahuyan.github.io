@@ -1,0 +1,32 @@
+section{
+	box-shadow	: 2px 2px 1px #d3d3d3;
+}
+
+h1{
+	text-align	:center;
+	font-size	:2em;
+}
+
+p{
+	font-size	:1.2em;
+}
+
+.communicate{
+	margin-left	:40px;
+	margin-top	:10px;
+	width		:200px;
+	padding		:5px 10px;
+	border-color:#bababa;
+	border-width:2px;
+	border-style:solid;
+	box-shadow	:2px 2px 1px #d3d3d3;
+	font-size	:1.2em;
+}
+
+#copyright{
+	margin-top	:100px;
+	color		:grey;
+	text-align	:center;
+	font-size	:0.9em;
+	font-family	:"Times New Roman",Georgia,Serif;
+}
