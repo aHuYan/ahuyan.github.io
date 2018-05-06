@@ -93,7 +93,7 @@ function add_bloglist(bloglist){
 			var title=document.createElement("p");
 			document.getElementById(divid).appendChild(title);
 			title.setAttribute("class","blog_title");
-			title.innerHTML=bloglist.blog[1].name;
+			title.innerHTML=bloglist.blog[i].name;
 		}
 	}
 }
