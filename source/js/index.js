@@ -68,9 +68,18 @@ function ask_json(){
 	request.onload = function (){
 		if(request.status == 200){
 			var text=JSON.parse(request.responseText);
-			document.getElementById("recent_read_2").innerHTML=text.number;
+			add_bloglist(text);
 		}
 	};
 	request.send(null);  
 }
+
+function add_bloglist(bloglist){
+	if(bloglist.number == 0){
+		var p = document.createElement("p");
+		document.getElementById("blog_list").appendChild(p);
+		p.innerHTML="暂时没有博文哟~";
+	}
+}
+
 window.onload=init;
