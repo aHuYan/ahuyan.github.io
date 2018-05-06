@@ -69,6 +69,8 @@ function ask_json(){
 		if(request.status == 200){
 			var text=JSON.parse(request.responseText);
 			add_bloglist(text);
+		}else{
+			alert("json加载失败，请重试");
 		}
 	};
 	request.send(null);  
@@ -76,9 +78,23 @@ function ask_json(){
 
 function add_bloglist(bloglist){
 	if(bloglist.number == 0){
-		var p = document.createElement("p");
-		document.getElementById("blog_list").appendChild(p);
-		p.innerHTML="暂时没有博文哟~";
+		var para = document.createElement("p");
+		document.getElementById("blog_list").appendChild(para);
+		para.innerHTML="暂时没有博文哟~";
+		para.style.marginLeft="5px";
+	}else if(bloglist.number <= 7 && bloglist.number != 0){
+		for(var i=bloglist.number; i>=1; i--){
+			var div=document.createElement("div");
+			document.getElementById("blog_list").appendChild(div);
+			div.setAttribute("class","list_blog");
+			var divid="list_blog" + "_"+ i;
+			div.setAttribute("id",divid);
+			
+			var title=document.createElement("p");
+			document.getElementById(divid).appendChild(title);
+			title.setAttribute("class","blog_title");
+			title.innerHTML=bloglist.blog[1].name;
+		}
 	}
 }
 
