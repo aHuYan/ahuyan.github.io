@@ -33,12 +33,22 @@ function ask_blogclass(text){
 }
 
 function add_byclass(blogclass){
-	var class_name = get_urlsrt("class");
-	if(class_name=="noip"){
-		for (var h=blogclass.noip[0];h>0;h--){
-			creat_blog(bloglist,blogclass.noip[h]);
+	var request = new XMLHttpRequest();
+	request.open("GET","json/bloglist.json");
+	request.onload = function (){
+		if(request.status == 200){
+			var bloglist=JSON.parse(request.responseText);
+			var class_name = get_urlsrt("class");
+			if(class_name=="noip"){
+			for (var h=blogclass.noip[0];h>0;h--){
+				creat_blog(bloglist,blogclass.noip[h]);
+			}
 		}
-	}
+		}else{
+			//alert("json加载失败，请重试");
+		}
+	};
+	request.send(null);  
 }
 
 function creat_blog(bloglist,i){
