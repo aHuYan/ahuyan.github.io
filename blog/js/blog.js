@@ -34,8 +34,10 @@ function ask_blogclass(text){
 
 function add_byclass(blogclass){
 	var class_name = get_urlsrt("class");
-	for (var h=blogclass.class_name[0];h>0;h--){
-		creat_blog(bloglist,blogclass.class_name[h]);
+	if(class_name=="noip"){
+		for (var h=blogclass.noip[0];h>0;h--){
+			creat_blog(bloglist,blogclass.noip[h]);
+		}
 	}
 }
 
