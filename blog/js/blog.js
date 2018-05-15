@@ -114,7 +114,7 @@ function add_blogaside(){
 	request.onload = function (){
 		if(request.status == 200){
 			var allblogclass=JSON.parse(request.responseText);
-			for(var i=1;i<=parseInt(allblogclass.all[0];i++){
+			for(var i=1;i<=parseInt(allblogclass.all[0]);i++){
 				var a=document.createElement("a");
 				document.getElementById("blog_class").appendChild(a);
 				a.setAttribute("href","blog.html?" + allblogclass.all[i]);
