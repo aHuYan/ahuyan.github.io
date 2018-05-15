@@ -19,7 +19,7 @@ function creat_blog(n,jsonname){
 	var div=document.createElement("div");
 	a.appendChild(div);
 	div.setAttribute("class","list_blog");
-	var divid="list_blog" + "_"+ i;
+	var divid="list_blog" + "_"+ n;
 	div.setAttribute("id",divid);
 					
 	var title=document.createElement("p");
