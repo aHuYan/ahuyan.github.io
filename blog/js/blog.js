@@ -123,13 +123,13 @@ function add_blogaside(){
 				var p=document.createElement("p");
 				a.appendChild(p);
 				p.setAttribute("class","class_list");
-				if(url_c=="noip"){			
+				if(allblogclass.all[i]=="noip"){			
 					p.innerHTML=allblogclass.all[i]+"（"+allblogclass.noip[0]+"）";
-				}else if(url_c=="tree"){	
+				}else if(allblogclass.all[i]=="tree"){	
 					p.innerHTML=allblogclass.all[i]+"（"+allblogclass.tree[0]+"）";
-				}else if(url_c=="number"){
+				}else if(allblogclass.all[i]=="number"){
 					p.innerHTML=allblogclass.all[i]+"（"+allblogclass.number[0]+"）";
-				}else if(url_c=="algorithm"){
+				}else if(allblogclass.all[i]=="algorithm"){
 					p.innerHTML=allblogclass.all[i]+"（"+allblogclass.algorithm[0]+"）";
 				}
 			}
