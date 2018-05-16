@@ -132,6 +132,7 @@ function add_blogaside(){
 				}else if(url_c=="algorithm"){
 					p.innerHTML=allblogclass.all[i]+"（"+allblogclass.algorithm[0]+"）";
 				}
+			}
 		}else{
 			//alert("json加载失败，请重试");
 		}
