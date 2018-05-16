@@ -117,7 +117,7 @@ function add_blogaside(){
 			for(var i=1;i<=parseInt(allblogclass.all[0]);i++){
 				var a=document.createElement("a");
 				document.getElementById("blog_class").appendChild(a);
-				a.setAttribute("href","blog.html?" + allblogclass.all[i]);
+				a.setAttribute("href","blog.html?class=" + allblogclass.all[i]);
 				a.setAttribute("title",allblogclass.all[i]);
 				
 				var p=document.createElement("p");
