@@ -7,7 +7,7 @@ function get_urlsrt(name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
         var r = window.location.search.substr(1).match(reg); 
         if (r != null) return unescape(r[2]); 
-        return "no class"; 
+        return "no str"; 
     } 
 
 function creat_blog(n,jsonname){
@@ -37,6 +37,7 @@ function creat_blog(n,jsonname){
 	profile.setAttribute("class","blog_profile");
 	profile.innerHTML=jsonname.blog[n].profile;
 }
+
 function ask_json(){
 	var url="json/bloglist.json";
 	var request = new XMLHttpRequest();
@@ -44,7 +45,11 @@ function ask_json(){
 	request.onload = function (){
 		if(request.status == 200){
 			var text=JSON.parse(request.responseText);
-			add_bloglist(text);
+			if(get_urlsrt("p")=="no str"){
+				add_bloglist(text);
+			}else{
+				add_blogarticle(get_urlsrt("p"),text);
+			}
 			add_blogaside();
 		}else{
 			//alert("json加载失败，请重试");
@@ -54,7 +59,7 @@ function ask_json(){
 }
 
 function add_bloglist(bloglist){
-	if(get_urlsrt("class")=="no class"){
+	if(get_urlsrt("class")=="no str"){
 		if(bloglist.number == 0){
 			var para = document.createElement("p");
 			document.getElementById("blog_list").appendChild(para);
@@ -140,5 +145,14 @@ function add_blogaside(){
 	request.send(null);  
 }
 
+function add_blogarticle(name,list){
+	var iframe=document.createElement("iframe");
+	document.getElementById("blog_list").appendChild(iframe);
+	iframe.setAttribute("src",list.blog[name].url);
+	iframe.setAttribute("frameborder","0");
+	iframe.setAttribute("width","100%");
+	iframe.setAttribute("height",list.blog[name].height);
+	
+}
 
 window.onload=init;
