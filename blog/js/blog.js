@@ -48,7 +48,7 @@ function ask_json(){
 			if(get_urlsrt("p")=="no str"){
 				add_bloglist(text);
 			}else{
-				add_blogarticle(get_urlsrt("p"),text);
+				add_blogarticle(parseInt(get_urlsrt("p")),text);
 			}
 			add_blogaside();
 		}else{
