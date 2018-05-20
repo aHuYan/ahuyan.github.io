@@ -13,7 +13,7 @@ function get_urlsrt(name) {
 function creat_blog(n,jsonname){
 	var a=document.createElement("a");
 	document.getElementById("blog_list").appendChild(a);
-	a.setAttribute("href",jsonname.blog[n].url);
+	a.setAttribute("href","?p=" + jsonname.blog[n].url);
 	a.setAttribute("title",jsonname.blog[n].name);
 					
 	var div=document.createElement("div");
