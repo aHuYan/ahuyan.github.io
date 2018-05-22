@@ -40,6 +40,11 @@ hr{
 	box-shadow	: 2px 2px 3px lightgrey;
 }
 
+.recent_read_list{
+	margin-left	:15px;
+	
+}
+
 #blog_list{
 	float		:right;
 	width		:78%;
@@ -50,9 +55,9 @@ hr{
 .list_blog{
 	width		:98%;
 	margin-left	:5px;
-	margin-top	:10px;
-	margin-bottom:10px;
-	padding-bottom:1px;
+	margin-top	:15px;
+	margin-bottom:15px;
+	padding-bottom:10px;
 	box-shadow	: 2px 2px 3px #b0b0b2;
 	transition-property: background-color;
 	transition-duration: 1s;
@@ -91,7 +96,7 @@ hr{
 	box-shadow	: 2px 2px 3px lightgrey;
 }
 
-#app_1,#link_1{margin:5px;}
+#app_1,#link_1{margin:7px;}
 
 #links{
 	float		:left;
