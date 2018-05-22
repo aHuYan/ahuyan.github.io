@@ -5,7 +5,7 @@ function init(){
 }	
 
 function show_header(){
-	if(localStorage["is_first_come"]=="0")
+	if(localStorage.is_first_come=="0")
 	{
 		document.getElementById("header_articls").style.display="none";
 		document.getElementById("header_funs").style.display="block";
@@ -16,8 +16,12 @@ function show_header(){
 		document.getElementById("header_articls").style.display="block";
 		document.getElementById("header_funs").style.display="none";
 		localStorage.setItem("is_first_come","0");
-		localStorage.setItem("recent_read_one","none");
-		
+		localStorage.recent_read_one="none";
+		localStorage.recent_read_two="none";
+		localStorage.recent_read_three="none";
+		localStorage.recent_read_one_url="none";
+		localStorage.recent_read_two_url="none";
+		localStorage.recent_read_three_url="none";
 	}
 }
 		
@@ -31,21 +35,7 @@ function paly_header_funs(){
 	var noip = "2018/11/09 10:00:00";
 	var to_noip = new Date(noip).getTime() - date.getTime();
 	document.getElementById("to_noip").innerHTML="&nbsp;&nbsp;&nbsp;距离NOIp2018还有" + "<strong>" + Math.floor(to_noip/(24*3600*1000)) + "</strong>" + "天&nbsp;&nbsp;";
-	/*获取地理信息 参考headfirst html5
-	if(navigator.geolecation){
-		navigator.geolecation.getCurrentPosition(displayLocation);
-	}else{
-		document.getElementById("to_noip").innerHTML="&nbsp;&nbsp;<strong>此浏览器不支持地理位置</strong>";
-	}
-	function degreesToDecimal(degrees,minutes,seconds){
-		return degrees + (minutes/60.0) + (seconds/3600.0);
-	}
-	function displayLocation(position){
-		var latitude = position.coords.latitude; 
-		var longitude = position.coords.longitude;
-		document.getElementById("show_position").innerHTML="&nbsp;&nbsp;当前位置：" + latitude + "/" + longitude; 
-	}
-	*/
+	
 }		
 	
 function set_recent_read(){
@@ -54,9 +44,20 @@ function set_recent_read(){
 		document.getElementById("recent_read_1").innerHTML="最近暂时没有读什么哟~";
 		document.getElementById("recent_read_1").style.margin="5px";
 	}else{
-		document.getElementById("recent_read_1").innerHTML= localStorage["recent_read_one"];
-		document.getElementById("recent_read_2").innerHTML= localStorage["recent_read_two"];
-		document.getElementById("recent_read_3").innerHTML= localStorage["recent_read_three"];
+		document.getElementById("recent_read_1").innerHTML= "1."+localStorage.recent_read_one;
+		var a1=document.createElement("a");
+		document.getElementById("recent_read_1").appendChild(a1);
+		a1.setAttribute("href","/blog/blog.html?p="+localStorage.recent_read_one_url);
+		
+		document.getElementById("recent_read_2").innerHTML= "2."+localStorage.recent_read_two;
+		var a2=document.createElement("a");
+		document.getElementById("recent_read_2").appendChild(a2);
+		a1.setAttribute("href","/blog/blog.html?p="+localStorage.recent_read_two_url);
+		
+		document.getElementById("recent_read_3").innerHTML= "3."+ localStorage.recent_read_three;
+		var a3=document.createElement("a");
+		document.getElementById("recent_read_3").appendChild(a3);
+		a1.setAttribute("href","/blog/blog.html?p="+localStorage.recent_read_three_url);
 	}
 	
 }		
@@ -86,7 +87,7 @@ function add_bloglist(bloglist){
 		for(var i=bloglist.number-1; i>=0; i--){
 			var a=document.createElement("a");
 			document.getElementById("blog_list").appendChild(a);
-			a.setAttribute("href",bloglist.blog[i].url);
+			a.setAttribute("href","/blog/blog.html?p="+bloglist.blog[i].url);
 			a.setAttribute("title",bloglist.blog[i].name);
 			
 			var div=document.createElement("div");
