@@ -1,6 +1,5 @@
 ﻿function init(){
 	ask_json();
-	alert(get_urlsrt("class"));
 }	
 
 function get_urlsrt(name) { 
@@ -145,14 +144,28 @@ function add_blogaside(){
 	request.send(null);  
 }
 
-function add_blogarticle(name,list){
+function add_blogarticle(num,list){
 	var iframe=document.createElement("iframe");
 	document.getElementById("blog_list").appendChild(iframe);
-	iframe.setAttribute("src",list.blog[name].url);
+	iframe.setAttribute("src",list.blog[num].url+".html");
 	iframe.setAttribute("frameborder","0");
 	iframe.setAttribute("width","100%");
-	iframe.setAttribute("height",list.blog[name].height);
-	
+	iframe.setAttribute("height",list.blog[num].height);
+	if(localStorage.recent_read_one == list.blog[num].name){
+		localStorage.recent_read_one_url=list.blog[num].url;
+	}else if( localStorage.recent_read_two == list.blog[num].name){
+		localStorage.recent_read_two=localStorage.recent_read_one;
+		localStorage.recent_read_two_url=localStorage.recent_read_one_url;
+		localStorage.recent_read_one=list.blog[num].name;
+		localStorage.recent_read_one_url=list.blog[num].url;
+	}else{
+		localStorage.recent_read_three=localStorage.recent_read_two;
+		localStorage.recent_read_three_url=localStorage.recent_read_two_url;
+		localStorage.recent_read_two=localStorage.recent_read_one;
+		localStorage.recent_read_two_url=localStorage.recent_read_one_url;
+		localStorage.recent_read_one=list.blog[num].name;
+		localStorage.recent_read_one_url=list.blog[num].url;
+	}
 }
 
 window.onload=init;
