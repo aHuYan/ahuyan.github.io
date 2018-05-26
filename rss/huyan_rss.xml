@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<rss version="2.0">
+	<channel>
+		<title>胡言的博客</title>
+		<link>https://ahuyan.github.io</link>
+		<description>本频道包含有关编程、NOIp、杂记、知识等的个人博客内容</description>
+		<language>zh-cn</language>
+		<managingEditor>huyan.zh@foxmail.com</managingEditor>
+		<pubDate>Sat, 26 May 2018 22:16:00 CST</pubDate>
+		<copyright>Copyright © 2018 HuYan. All Rights Reserved.</copyright>
+		<item>
+			<title>测试</title>
+			<link>https://ahuyan.github.io/blog/blog.html?p=0</link>
+			<description>暂时还没有描述</description>
+			<pubDate>Sat, 26 May 2018 22:16:00 CST</pubDate>
+		</item>
+	</channel>
+</rss>
