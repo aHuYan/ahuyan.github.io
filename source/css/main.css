@@ -58,11 +58,15 @@
 /*底部菜单结束*/
 /*主体内容开始*/
 body{
-	font-family		:HanYiSongChangJian;
+	background-color:#f8e8d2;
+}
+div{
+	background-color:white;
 }
 section{
 	margin			:30px;
 	padding			:10px 5px;
+	background-color:white;
 	box-shadow		: 2px 2px 3px lightgrey;
 }
 article{
@@ -89,6 +93,6 @@ a:active{
 	text-decoration	:none;
 } 
 ::-moz-selection{
-	background-color:yellow;
+	background-color:wheat;
 }
 /*主体内容结束*/

@@ -44,23 +44,20 @@ function set_recent_read(){
 		document.getElementById("recent_read_1").innerHTML="最近暂时没有读什么哟~";
 		document.getElementById("recent_read_1").style.margin="5px";
 	}else{
-		document.getElementById("recent_read_1").innerHTML= "1.";
+		document.getElementById("recent_read_1").innerHTML= "1."+localStorage.recent_read_one;
 		var a1=document.createElement("a");
 		document.getElementById("recent_read_1").appendChild(a1);
 		a1.setAttribute("href","/blog/blog.html?p="+localStorage.recent_read_one_url);
-		a1.innerHTML=localStorage.recent_read_one;
 		
-		document.getElementById("recent_read_2").innerHTML= "2.";
+		document.getElementById("recent_read_2").innerHTML= "2."+localStorage.recent_read_two;
 		var a2=document.createElement("a");
 		document.getElementById("recent_read_2").appendChild(a2);
-		a2.setAttribute("href","/blog/blog.html?p="+localStorage.recent_read_two_url);
-		a2.innerHTML=localStorage.recent_read_two;
+		a1.setAttribute("href","/blog/blog.html?p="+localStorage.recent_read_two_url);
 		
-		document.getElementById("recent_read_3").innerHTML= "3.";
+		document.getElementById("recent_read_3").innerHTML= "3."+ localStorage.recent_read_three;
 		var a3=document.createElement("a");
 		document.getElementById("recent_read_3").appendChild(a3);
-		a3.setAttribute("href","/blog/blog.html?p="+localStorage.recent_read_three_url);
-		a3.innerHTML=localStorage.recent_read_three;
+		a1.setAttribute("href","/blog/blog.html?p="+localStorage.recent_read_three_url);
 	}
 	
 }		

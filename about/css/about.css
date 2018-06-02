@@ -1,3 +1,7 @@
+body{
+	font-family:HanYiSongChangJian;
+}
+
 section{
 	box-shadow	: 2px 2px 1px #d3d3d3;
 }
@@ -14,7 +18,7 @@ p{
 .communicate{
 	margin-left	:40px;
 	margin-top	:10px;
-	width		:200px;
+	width		:220px;
 	padding		:5px 10px;
 	border-color:#bababa;
 	border-width:2px;

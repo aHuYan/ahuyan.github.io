@@ -11,16 +11,19 @@
 	display		:inline;
 	float		:left;
 	text-align	:left;
-	font-size	:1.5em;
+	font-size	:1.7em;
 	text-shadow: 3px 3px 3px #939393;
 }
 
 #header_funs{
 	text-align	:right;
+	font-family	:HanYiSongChangJian;
 }
 
 #main{
 	box-shadow	: 2px 2px 3px white;
+	padding-bottom: 0px;
+    padding-top: 0px;
 }
 
 hr{
@@ -45,6 +48,12 @@ hr{
 	
 }
 
+.feed {
+  margin-left: 3px;
+  padding: 0 0 0 19px;
+  background: url("/source/img/feed-icon-14x14.png") no-repeat 0 50%;
+} 
+
 #blog_list{
 	float		:right;
 	width		:78%;
@@ -53,18 +62,19 @@ hr{
 }
 
 .list_blog{
-	width		:98%;
-	margin-left	:5px;
-	margin-top	:15px;
-	margin-bottom:15px;
-	padding-bottom:10px;
-	box-shadow	: 2px 2px 3px #b0b0b2;
+	width			:98%;
+	margin-left		:5px;
+	margin-bottom	:15px;
+	padding-bottom	:5px;
+	padding-top		:7px;
+	box-shadow		: 2px 2px 3px #b0b0b2;
 	transition-property: background-color;
 	transition-duration: 1s;
 }
 
 .list_blog:hover{
-	background-color:#ececec;
+	background-color:#f8cf8380;
+	background-color:rgba(248,207,131,0.8);
 }
 
 .blog_title{
@@ -78,7 +88,7 @@ hr{
 .blog_profile{
 	margin-left	:5px;
 	color		:#666465;
-	font-size	:1.07em;
+	font-size	:1em;
 }
 
 .blog_date{
@@ -101,7 +111,10 @@ hr{
 #links{
 	float		:left;
 	margin-top	:20px;
+	padding-bottom:7px;
 	clear		:left;
 	width		:20%;
 	box-shadow	: 2px 2px 3px lightgrey;
 }
+
+

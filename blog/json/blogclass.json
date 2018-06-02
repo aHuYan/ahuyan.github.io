@@ -1,7 +1,8 @@
 {
-"all":["4","noip","tree","number","algorithm"],
-"noip":[5,1,4,0,2,3],
+"all":["5","noip","tree","number","algorithm","struct"],
+"noip":[0],
 "tree":[0],
 "number":[0],
-"algorithm":[0]
+"algorithm":[0],
+"struct":[0]
 }

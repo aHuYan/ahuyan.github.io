@@ -51,7 +51,7 @@ function ask_json(){
 			}
 			add_blogaside();
 		}else{
-			//alert("json加载失败，请重试");
+			alert("json加载失败，请重试");
 		}
 	};
 	request.send(null);  
@@ -102,7 +102,7 @@ function add_bloglist(bloglist){
 				}
 			}
 		}else{
-			//alert("json加载失败，请重试");
+			alert("json加载失败，请重试");
 		}
 	};
 	request.send(null);  
@@ -127,18 +127,20 @@ function add_blogaside(){
 				var p=document.createElement("p");
 				a.appendChild(p);
 				p.setAttribute("class","class_list");
-				if(allblogclass.all[i]=="noip"){			
-					p.innerHTML=allblogclass.all[i]+"（"+allblogclass.noip[0]+"）";
+				if(allblogclass.all[i]=="noip"){	
+					p.innerHTML="NOIp"+"（"+allblogclass.noip[0]+"）";
 				}else if(allblogclass.all[i]=="tree"){	
-					p.innerHTML=allblogclass.all[i]+"（"+allblogclass.tree[0]+"）";
+					p.innerHTML="图论"+"（"+allblogclass.tree[0]+"）";
 				}else if(allblogclass.all[i]=="number"){
-					p.innerHTML=allblogclass.all[i]+"（"+allblogclass.number[0]+"）";
+					p.innerHTML="数论"+"（"+allblogclass.number[0]+"）";
 				}else if(allblogclass.all[i]=="algorithm"){
-					p.innerHTML=allblogclass.all[i]+"（"+allblogclass.algorithm[0]+"）";
+					p.innerHTML="算法"+"（"+allblogclass.algorithm[0]+"）";
+				}else if(allblogclass.all[i]=="struct"){
+					p.innerHTML="数据结构"+"（"+allblogclass.algorithm[0]+"）";
 				}
 			}
 		}else{
-			//alert("json加载失败，请重试");
+			alert("json加载失败，请重试");
 		}
 	};
 	request.send(null);  
