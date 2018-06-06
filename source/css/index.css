@@ -73,8 +73,7 @@ hr{
 }
 
 .list_blog:hover{
-	background-color:#f8cf8380;
-	background-color:rgba(248,207,131,0.8);
+	background-color:#fae2b3;
 }
 
 .blog_title{
@@ -86,7 +85,7 @@ hr{
 }
 
 .blog_profile{
-	margin-left	:5px;
+	margin-left	:10px;
 	color		:#666465;
 	font-size	:1em;
 }
@@ -95,7 +94,7 @@ hr{
 	display		:inline;
 	direction	:rtl;
 	font-size	:0.8em;
-	
+	margin-left	:5px;
 }
 
 #apps{

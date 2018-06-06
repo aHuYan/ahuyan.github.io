@@ -1,6 +1,23 @@
 ﻿function init(){
 	ask_json();
+	loading();
 }	
+
+function loading(){
+	if(document.readyState=="complete"){
+		document.body.style.overflow="hidden";
+		 setTimeout(function () {
+			 for(var o=1;o>=0;o=o-0.1){
+				 setTimeout(function (){
+					document.getElementById("loading").style.opacity=o;
+				 }
+				 ,500);
+			 }
+			 document.getElementById("loading").style.display="none"; 
+			 document.body.style.overflow="auto";
+		}, 1000);
+	}
+}
 
 function get_urlsrt(name) { 
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
@@ -29,7 +46,7 @@ function creat_blog(n,jsonname){
 	var date=document.createElement("p");
 	document.getElementById(divid).appendChild(date);
 	date.setAttribute("class","blog_date");
-	date.innerHTML=jsonname.blog[n].date;
+	date.innerHTML="&nbsp;&nbsp;" + jsonname.blog[n].date;
 					
 	var profile=document.createElement("p");
 	document.getElementById(divid).appendChild(profile);
@@ -88,17 +105,17 @@ function add_bloglist(bloglist){
 				for (h=blogclass.noip[0];h>0;h--){
 					creat_blog(blogclass.noip[h],bloglist);
 				}
-			}else if(class_name=="tree"){	
-				for (h=blogclass.tree[0];h>0;h--){
-					creat_blog(blogclass.tree[h],bloglist);
+			}else if(class_name=="algorithm"){
+				for (h=blogclass.algorithm[0];h>0;h--){
+					creat_blog(blogclass.algorithm[h],bloglist);
 				}
 			}else if(class_name=="number"){
 				for (h=blogclass.number[0];h>0;h--){
 					creat_blog(blogclass.number[h],bloglist);
 				}
-			}else if(class_name=="algorithm"){
-				for (h=blogclass.algorithm[0];h>0;h--){
-					creat_blog(blogclass.algorithm[h],bloglist);
+			}else if(class_name=="life"){
+				for (h=blogclass.life[0];h>0;h--){
+					creat_blog(blogclass.life[h],bloglist);
 				}
 			}
 		}else{
@@ -129,14 +146,14 @@ function add_blogaside(){
 				p.setAttribute("class","class_list");
 				if(allblogclass.all[i]=="noip"){	
 					p.innerHTML="NOIp"+"（"+allblogclass.noip[0]+"）";
-				}else if(allblogclass.all[i]=="tree"){	
-					p.innerHTML="图论"+"（"+allblogclass.tree[0]+"）";
+				}else if(allblogclass.all[i]=="struct"){	
+					p.innerHTML="数据结构"+"（"+allblogclass.struct[0]+"）";
 				}else if(allblogclass.all[i]=="number"){
 					p.innerHTML="数论"+"（"+allblogclass.number[0]+"）";
 				}else if(allblogclass.all[i]=="algorithm"){
 					p.innerHTML="算法"+"（"+allblogclass.algorithm[0]+"）";
-				}else if(allblogclass.all[i]=="struct"){
-					p.innerHTML="数据结构"+"（"+allblogclass.algorithm[0]+"）";
+				}else if(allblogclass.all[i]=="life"){
+					p.innerHTML="生活"+"（"+allblogclass.life[0]+"）";
 				}
 			}
 		}else{

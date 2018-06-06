@@ -95,4 +95,8 @@ a:active{
 ::-moz-selection{
 	background-color:wheat;
 }
+::selection{
+	background-color:wheat;
+}
+
 /*主体内容结束*/
