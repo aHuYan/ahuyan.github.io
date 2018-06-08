@@ -44,11 +44,11 @@ function show_header(){
 		
 function paly_header_funs(){
 	document.getElementById("header_funs").style.fontSize="1em";
-	//获取当前时间
+	
 	var date = new Date;
 	var now = date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + date.getDate() + "日";
 	document.getElementById("now_time").innerHTML="&nbsp;" + now;
-	//计算距离NOIP的时间
+	
 	var noip = "2018/11/09 10:00:00";
 	var to_noip = new Date(noip).getTime() - date.getTime();
 	document.getElementById("to_noip").innerHTML="&nbsp;&nbsp;&nbsp;距离NOIp2018还有" + "<strong>" + Math.floor(to_noip/(24*3600*1000)) + "</strong>" + "天&nbsp;&nbsp;";
@@ -77,7 +77,7 @@ function set_recent_read(){
 		var a3=document.createElement("a");
 		document.getElementById("recent_read_3").appendChild(a3);
 		a3.setAttribute("href","/blog/blog?p="+localStorage.recent_read_three_url);
-		a3.innerHTML=localStorage.recent_read_one;
+		a3.innerHTML=localStorage.recent_read_three;
 	}
 	
 }		
