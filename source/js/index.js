@@ -64,17 +64,17 @@ function set_recent_read(){
 		document.getElementById("recent_read_1").innerHTML= "1."+localStorage.recent_read_one;
 		var a1=document.createElement("a");
 		document.getElementById("recent_read_1").appendChild(a1);
-		a1.setAttribute("href","/blog/blog.html?p="+localStorage.recent_read_one_url);
+		a1.setAttribute("href","/blog/blog?p="+localStorage.recent_read_one_url);
 		
 		document.getElementById("recent_read_2").innerHTML= "2."+localStorage.recent_read_two;
 		var a2=document.createElement("a");
 		document.getElementById("recent_read_2").appendChild(a2);
-		a1.setAttribute("href","/blog/blog.html?p="+localStorage.recent_read_two_url);
+		a1.setAttribute("href","/blog/blog?p="+localStorage.recent_read_two_url);
 		
 		document.getElementById("recent_read_3").innerHTML= "3."+ localStorage.recent_read_three;
 		var a3=document.createElement("a");
 		document.getElementById("recent_read_3").appendChild(a3);
-		a1.setAttribute("href","/blog/blog.html?p="+localStorage.recent_read_three_url);
+		a1.setAttribute("href","/blog/blog?p="+localStorage.recent_read_three_url);
 	}
 	
 }		
@@ -88,7 +88,7 @@ function ask_json(){
 			var text=JSON.parse(request.responseText);
 			add_bloglist(text);
 		}else{
-			//alert("json加载失败，请重试");
+			alert("json加载失败，请重试");
 		}
 	};
 	request.send(null);  
@@ -104,7 +104,7 @@ function add_bloglist(bloglist){
 		for(var i=bloglist.number-1; i>=0; i--){
 			var a=document.createElement("a");
 			document.getElementById("blog_list").appendChild(a);
-			a.setAttribute("href","/blog/blog.html?p="+bloglist.blog[i].url);
+			a.setAttribute("href","/blog/blog?p="+bloglist.blog[i].url);
 			a.setAttribute("title",bloglist.blog[i].name);
 			
 			var div=document.createElement("div");
