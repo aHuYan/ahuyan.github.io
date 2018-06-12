@@ -48,7 +48,7 @@ function paly_header_funs(){
 	var date = new Date;
 	var now = date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + date.getDate() + "日";
 	document.getElementById("now_time").innerHTML="&nbsp;" + now;
-	
+
 	var noip = "2018/11/09 10:00:00";
 	var to_noip = new Date(noip).getTime() - date.getTime();
 	document.getElementById("to_noip").innerHTML="&nbsp;&nbsp;&nbsp;距离NOIp2018还有" + "<strong>" + Math.floor(to_noip/(24*3600*1000)) + "</strong>" + "天&nbsp;&nbsp;";
@@ -64,20 +64,20 @@ function set_recent_read(){
 		document.getElementById("recent_read_1").innerHTML= "1.";
 		var a1=document.createElement("a");
 		document.getElementById("recent_read_1").appendChild(a1);
-		a1.setAttribute("href","/blog/blog?p="+localStorage.recent_read_one_url);
+		a1.setAttribute("href","blog?p="+localStorage.recent_read_one_url);
 		a1.innerHTML=localStorage.recent_read_one;
 		
 		document.getElementById("recent_read_2").innerHTML= "2.";
 		var a2=document.createElement("a");
 		document.getElementById("recent_read_2").appendChild(a2);
-		a2.setAttribute("href","/blog/blog?p="+localStorage.recent_read_two_url);
+		a2.setAttribute("href","blog?p="+localStorage.recent_read_two_url);
 		a2.innerHTML=localStorage.recent_read_two;
 		
 		document.getElementById("recent_read_3").innerHTML= "3.";
 		var a3=document.createElement("a");
 		document.getElementById("recent_read_3").appendChild(a3);
-		a3.setAttribute("href","/blog/blog?p="+localStorage.recent_read_three_url);
-		a3.innerHTML=localStorage.recent_read_three;
+		a3.setAttribute("href","blog?p="+localStorage.recent_read_three_url);
+		a3.innerHTML=localStorage.recent_read_one;
 	}
 	
 }		
@@ -107,7 +107,7 @@ function add_bloglist(bloglist){
 		for(var i=bloglist.number-1; i>=0; i--){
 			var a=document.createElement("a");
 			document.getElementById("blog_list").appendChild(a);
-			a.setAttribute("href","/blog/blog?p="+bloglist.blog[i].url);
+			a.setAttribute("href","blog?p="+bloglist.blog[i].url);
 			a.setAttribute("title",bloglist.blog[i].name);
 			
 			var div=document.createElement("div");

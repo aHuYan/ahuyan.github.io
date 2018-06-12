@@ -55,7 +55,7 @@ function creat_blog(n,jsonname){
 }
 
 function ask_json(){
-	var url="json/bloglist.json";
+	var url="blog/json/bloglist.json";
 	var request = new XMLHttpRequest();
 	request.open("GET",url);
 	request.onload = function (){
@@ -93,7 +93,7 @@ function add_bloglist(bloglist){
 			}
 		}
 	}else{
-		var url="json/blogclass.json";
+		var url="blog/json/blogclass.json";
 		var request = new XMLHttpRequest();
 		request.open("GET",url);
 		request.onload = function (){
@@ -129,7 +129,7 @@ function add_bloglist(bloglist){
 
 function add_blogaside(){
 	var url_c=get_urlsrt("class");
-	var url="json/blogclass.json";
+	var url="blog/json/blogclass.json";
 	var request = new XMLHttpRequest();
 	request.open("GET",url);
 	request.onload = function (){
