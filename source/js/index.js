@@ -13,7 +13,7 @@ function loading(){
 				 setTimeout(function (){
 					document.getElementById("loading").style.opacity=o;
 				 }
-				 ,500);
+				 ,700);
 			 }
 			 document.getElementById("loading").style.display="none"; 
 			 document.body.style.overflow="auto";
@@ -77,7 +77,7 @@ function set_recent_read(){
 		var a3=document.createElement("a");
 		document.getElementById("recent_read_3").appendChild(a3);
 		a3.setAttribute("href","blog?p="+localStorage.recent_read_three_url);
-		a3.innerHTML=localStorage.recent_read_one;
+		a3.innerHTML=localStorage.recent_read_three;
 	}
 	
 }		
