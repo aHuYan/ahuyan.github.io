@@ -166,7 +166,7 @@ function add_blogaside(){
 function add_blogarticle(num,list){
 	var iframe=document.createElement("iframe");
 	document.getElementById("blog_list").appendChild(iframe);
-	iframe.setAttribute("src",list.blog[num].url+".html");
+	iframe.setAttribute("src","blog/" + list.blog[num].url + ".html");
 	iframe.setAttribute("frameborder","0");
 	iframe.setAttribute("width","100%");
 	iframe.setAttribute("height",list.blog[num].height);
