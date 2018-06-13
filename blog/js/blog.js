@@ -1,5 +1,6 @@
 ﻿function init(){
 	ask_json();
+	disqus();
 	loading();
 }	
 
@@ -184,6 +185,12 @@ function add_blogarticle(num,list){
 		localStorage.recent_read_two_url=localStorage.recent_read_one_url;
 		localStorage.recent_read_one=list.blog[num].name;
 		localStorage.recent_read_one_url=list.blog[num].url;
+	}
+}
+
+function disqus(){
+	if(get_urlsrt("p") == "no str" ){
+		document.getElementById("disqus").style.display="none";
 	}
 }
 
