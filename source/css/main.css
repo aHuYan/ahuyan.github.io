@@ -9,11 +9,11 @@
 	position		:fixed;
 	bottom			:23px;
 	left			:50%;
-	background-color:grey;
-	border-radius	:15px;
+	background-color	:grey;
+	border-radius		:15px;
 	height			:30px;
-	transition-property: left;
-	transition-duration: 2.5s;
+	transition-property	: left;
+	transition-duration	: 2.5s;
 }
 			
 #bottom_main_menu{
@@ -22,8 +22,8 @@
 	left			:50%;
 	bottom			:17px;
 	text-align		:center;
-	background-color:lightgrey;
-	border-radius	:20px;
+	background-color	:lightgrey;
+	border-radius		:20px;
 }
 			
 #bottom_menu{
@@ -58,15 +58,16 @@
 /*底部菜单结束*/
 /*主体内容开始*/
 body{
-	background-color:#f8e8d2;
+	background-color	:#f8e8d2;
+	font-familt		:"Microsoft YaHei";
 }
 div{
-	background-color:white;
+	background-color	:white;
 }
 section{
 	margin			:30px;
 	padding			:10px 5px;
-	background-color:white;
+	background-color	:white;
 	box-shadow		: 2px 2px 3px lightgrey;
 }
 article{
@@ -90,13 +91,13 @@ a:hover {
 }   
 a:active{
 	color			:black;
-	text-decoration	:none;
+	text-decoration		:none;
 } 
 ::-moz-selection{
-	background-color:wheat;
+	background-color	:wheat;
 }
 ::selection{
-	background-color:wheat;
+	background-color	:wheat;
 }
 
 /*主体内容结束*/
