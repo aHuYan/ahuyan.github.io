@@ -8,11 +8,11 @@ function loading(){
 	if(document.readyState=="complete"){
 		document.body.style.overflow="hidden";
 		 setTimeout(function () {
-			 for(var o=1;o>=0;o=o-0.1){
+			 for(var o=1.1;o>=0;o=o-0.1){
 				 setTimeout(function (){
 					document.getElementById("loading").style.opacity=o;
 				 }
-				 ,500);
+				 ,700);
 			 }
 			 document.getElementById("loading").style.display="none"; 
 			 document.body.style.overflow="auto";
@@ -165,9 +165,12 @@ function add_blogaside(){
 }
 
 function add_blogarticle(num,list){
+	if(parseInt(get_urlsrt(p))+1 > list.number){
+		window.setTimeout("window.location='/'",950);
+	}
 	var iframe=document.createElement("iframe");
 	document.getElementById("blog_list").appendChild(iframe);
-	iframe.setAttribute("src","blog/" + get_urlsrt("p"));
+	iframe.setAttribute("src","blog/" + list.blog[num].url);
 	iframe.setAttribute("frameborder","0");
 	iframe.setAttribute("width","100%");
 	iframe.setAttribute("height",list.blog[num].height);
