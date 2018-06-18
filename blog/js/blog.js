@@ -166,7 +166,7 @@ function add_blogaside(){
 
 function add_blogarticle(num,list){
 	if(parseInt(get_urlsrt("p"))+1 > list.number){
-		window.setTimeout("window.location='/'",950);
+		window.setTimeout("window.location='404'",950);
 	}
 	var iframe=document.createElement("iframe");
 	document.getElementById("blog_list").appendChild(iframe);
