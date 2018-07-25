@@ -9,10 +9,10 @@
 		<pubDate>Sat, 26 May 2018 22:16:00 CST</pubDate>
 		<copyright>Copyright © 2018 HuYan. All Rights Reserved.</copyright>
 		<item>
-			<title>关于胡言你可能会想知道</title>
+			<title>C++11中的regex库</title>
 			<link>https://ahuyan.github.io/blog?p=0</link>
-			<description>胡言暂时是个人类...胡言是个思维严谨、精于理论、善于抽象且追求能力与独立的完美主义者...</description>
-			<pubDate>Thu, 7 Jun 2018 17:52:00 CST</pubDate>
+			<description>则表达式可以用来查找替换特定字符串，有效的利用正则表达式会很方便。C++11中的正则表达式默认应用ECMAScript语法。话说不知道NOIp支不支持C++11...[/doge]首先引入头文件：#include &lt;regex&gt;...</description>
+			<pubDate>Wed, 25 July 2018 19:15:00 CST</pubDate>
 		</item>
 	</channel>
 </rss>

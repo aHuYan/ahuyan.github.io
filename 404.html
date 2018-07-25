@@ -1,25 +1,39 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-cmn-Hans">
 	<head>
 		<meta charset="utf-8">
-		<link rel="stylesheet" type="text/css" href="source/css/main.css" >
-		<link rel="stylesheet" type="text/css" href="source/css/404.css" >
-		<script src="source/js/404.js"></script>
-		<link rel="stylesheet" type="text/css" href="../source/css/main.css" >
-		<link rel="stylesheet" type="text/css" href="../source/css/404.css" >
-		<script src="../source/js/404.js"></script>
-		<title>错误哟~</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>错误哟</title>
+		<link rel="stylesheet" type="text/css" href="source/css/bootstrap.min.css?v=3.3.7">
+		<script src="source/js/jquery-3.3.1.min.js"></script>
+		<script src="source/js/bootstrap.min.js?v=3.3.7"></script>
+		<style type="text/css">			
+		body{background-image:url(source/img/background-2.png);background-repeat:no-repeat;background-size:cover;background-attachment:fixed;position: relative;}			
+		.card{margin:20px;padding:20px;background-color:rgba(255,255,255,0.75);box-shadow: 2px 2px 3px lightgrey;}
+		p{font-size:1.5em;}
+		#back:link,#back:visited,#back:hover,#back:active,#back{text-decoration: none;color:black}
+		</style>
 	</head>
 	<body>
-		<section>
-			<p id="head">404</p>
-			<article>
+		<div class="container-fluid">
+			<div class="card text-center">
+				<p style="font-size:4.5em;margin-top:20px;margin-bottom:15px;">404</p>
 				<p>蛤。你好像迷路了。[/坏笑]</p>
 				<p>不要怀疑我是因为太懒而没有写这个页面。。。</p>
-				<p id="listen">听首歌再走吧。<br></p>	
-				<p><a href="/" title="返回主页">→返回主页←</a></p>
-				<br>
-			</article>
-		</section>
+				<p>听首歌再走吧。<br></p>
+				<div id="music"></div>
+				<p><a id="back" href="/" title="返回主页">→返回主页←</a></p><br><br>
+				<p class="text-center" style="color:grey;font-size:1em">Copyright © 2018 HUYAN All Rights Reserved</p>
+			</div>
+			<script>
+				$(function () {
+					var music=new Array("465675773","525278388","418602088","448060","451703096","1696373","30967975","3026583","534065323","446875490","512358011","461525011","459723209","66282","38592976","22778888","401249910","17996972","515453363","16607987","28157586","541259","499117","26377651","496869422","65761","28949444","5370718","33206214","414826502","28885472","448060","515269424","30903117","512358011");
+					var n=parseInt(Math.random()*35);
+					var src="//music.163.com/outchain/player?type=2&id=" + music[n] + "&auto=0&height=66";
+					var iframe="<iframe frameborder='no' border='0'  width=330 height=86 marginwidth='0' marginheight='0' src='"+src+"'></iframe>";
+					$("#music").append(iframe);
+				});
+			</script>
+		</div>
 	</body>
 </html>
