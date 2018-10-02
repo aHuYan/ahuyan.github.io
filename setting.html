@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<title>设置</title>
+		<link rel="stylesheet" type="text/css" href="source/css/style.css?v=2.0.0" >
+		<link rel="stylesheet" type="text/css" href="source/css/bootstrap.min.css?v=3.3.7">
+		<link rel="stylesheet" type="text/css" href="source/css/nprogress.css?v=0.2.0">
+		<script src="source/js/jquery-3.3.1.min.js"></script>
+		<script src="source/js/nprogress.js?v=0.2.0"></script>	
+		<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+		<script src="source/js/bootstrap.min.js?v=3.3.7"></script>
+	</head>
+	<body data-spy="scroll" data-target="#asnav" style="position:relative">
+		<div class="container-fluid">
+			<div class="row">
+				<aside id="asnav" class="col-md-2 col-sm-3 hidden-xs">			
+					<ul id="ulnav" class="nav">
+						<li><a href="/"> <span class="glyphicon glyphicon-home"></span> 返回主页</a></li>
+						<li class="active"><a href="#basic">基本操作</a></li>
+						<li><a href="#admin">管理员操作</a>
+							<ul class="nav">
+								<li><a href="#token">管理token</a></li>
+								<li><a href="#repo">绑定仓库</a></li>
+								<li><a href="#test">收发测试</a></li>
+							</ul>
+						</li>
+					</ul>
+				</aside>
+				<div class="col-md-10 col-md-offset-2 col-sm-9 col-sm-offset-3 col-xs-12">
+					<div id="main">
+						<div class="page-header">
+							<h1><span class="glyphicon glyphicon-cog"></span> 博客设置 <small> 版本 2.2.0 </small></h1>
+						</div>
+						<div class="alert alert-warning" role="alert">
+							<p>
+								<span class="glyphicon glyphicon-alert"></span> 本设置正在被完善！
+							</p>
+						</div>
+						<div id="basic" class="panel panel-default">
+							<div class="panel-heading"><h4>基本操作<h4></div>
+							<table class="table table-bordered">
+									<tbody>
+										<tr>
+											<td>导入配置：
+												<a class="btn btn-default" href="#" title="导入配置" disabled>
+													<span class="glyphicon glyphicon-import"></span>
+												</a>
+											</td>
+											<td>导出配置：
+												<a class="btn btn-default" href="#" title="导出配置" disabled>
+													<span class="glyphicon glyphicon-export"></span>
+												</a>
+											</td>
+											<td><a class="btn btn-default"  data-toggle="collapse" data-parent="#basic" href="#baseHelp"><span class="glyphicon glyphicon-info-sign"></span> 帮助</a></td>
+										</tr>
+									</tbody>
+							</table>
+							<div id="baseHelp" class="panel-collapse collapse">
+								<div class="panel-body">
+									<p class="callout callout-info">
+									使用导入/导出配置，能够将个人在本站的数据保存到本地。使用其他浏览器或设备时，可以导入配置文件。恢复原先数据。适用于博客拥有者，或长期浏览者？？！
+									<div class="Switch">
+										<input id="ins" class="hidden" type="checkbox">
+										<label for="ins"></label>
+									</div>
+									</p>
+								</div>
+							</div>
+						</div>
+						<div id="admin" class="panel panel-default">
+							<div class="panel-heading"><h4>管理员操作<h4></div>
+							<div class="panel-body">
+								<div id="token">
+									<p>管理员token <span id="tokenp"></span></p>
+									<script>
+									$(function () {
+										if(localStorage.tokenp==1){
+											$("#tokenp").attr("class","glyphicon glyphicon-ok text-success").attr("title","已保存");
+										}
+									});
+									</script>
+									<div class="input-group">
+										 <input id="token-input" type="password" class="form-control" placeholder="admin-token">
+										 <span class="input-group-btn">
+											<button id="token-save"class="btn btn-default" type="button">保存</button>
+										 </span>
+									</div><br>
+									<script>
+										$('#token-save').on('click', function () {
+											if($("#token-input").val()=="" || $("#token-input").val()==" "){
+												if(localStorage.tokenp!=1){
+													var info="<div class='alert alert-danger alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>请输入您的token！</strong></div>";
+												}else{
+													var info="<div class='alert alert-danger alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>您的token已被清除！</strong></div>";
+													$("#tokenp").attr("class","").attr("title","");
+													localStorage.tokenp=0;
+													localStorage.token="";
+													window.location.reload();
+												}
+											}else if(localStorage.token==$("#token-input").val()){
+												var info="<div class='alert alert-info alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>注意！</strong> 您的token已被保存。</div>";
+											}else{
+												localStorage.token=$("#token-input").val();
+												localStorage.tokenp=1;
+												var info="<div class='alert alert-success alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>保存成功！</strong> token信息已经被保存至本地储存 LocalStorage。<br><strong>您的token不会被本系统恶意使用，同时也不会被上传发送给其他人。</strong><br><strong>若要移除token，请清空并保存。</strong></div>";
+												$("#tokenp").attr("class","glyphicon glyphicon-ok text-success").attr("title","已保存");
+											}
+											$("#token").append(info);
+										})
+									</script>
+								</div>
+								<div id="repo">
+									<p>绑定仓库 <span id="repop"></span></p>
+									<script>
+									$(function () {
+										if(localStorage.repop==1){
+											$("#repop").attr("class","glyphicon glyphicon-ok text-success").attr("title","已绑定");
+										}
+									});
+									</script>
+									<div class="input-group">
+										 <span class="input-group-addon">https://github.com/</span>
+										 <input id="repo-username" type="text" class="form-control" placeholder="username">
+										 <span class="input-group-addon">/</span>
+										 <input id="repo-reponame" type="text" class="form-control" placeholder="repository name">
+										 <span class="input-group-btn">
+											<button id="repo-save"class="btn btn-default" type="button">保存</button>
+										 </span>
+									</div><br>
+									<script>
+										$('#repo-save').on('click', function () {
+											if($("#repo-username").val()=="" || $("#repo-username").val()==" " || $("#repo-repomame").val()=="" || $("#repo-repomame").val()==" "){
+												if(localStorage.repop!=1){
+													var info="<div class='alert alert-danger alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>输入不得为空！</strong></div>";
+												}else{
+													var info="<div class='alert alert-danger alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>您的仓库地址已被清除！</strong></div>";
+													$("#repop").attr("class","").attr("title","");
+													localStorage.repop=0;
+													localStorage.repo="";
+													localStorage.repo_username="";
+													localStorage.repo_reponame="";
+													window.location.reload();
+												}
+											}else if(localStorage.repo==($("#repo-username").val()+"/"+$("#repo-repomame").val())){
+												var info="<div class='alert alert-info alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>注意！</strong> 您的仓库地址已被保存。</div>";
+											}else{
+												localStorage.repo=$("#repo-username").val()+"/"+$("#repo-reponame").val();
+												localStorage.repo_username=$("#repo-username").val();
+												localStorage.repo_reponame=$("#repo-reponame").val();
+												localStorage.repop=1;
+												var info="<div class='alert alert-success alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>保存成功！</strong> 您的仓库地址已经被保存至本地储存 LocalStorage。<br></strong><br><strong>若要移除仓库地址，请清空并保存。</strong></div>";
+												$("#repop").attr("class","glyphicon glyphicon-ok text-success").attr("title","已保存");
+											}
+											$("#repo").append(info);
+										})
+									</script>
+								</div>
+								<div id="test">
+									<p>收发测试 <span id="testp"></span></p>
+									<div id="test-body" class="panel panel-default">
+										<table class="table">
+												<tbody>
+													<tr>
+														<td>进行测试：
+															<a class="btn btn-default" title="已经通过的请勿再进行" onclick="test()">
+																<span class="glyphicon glyphicon-send"></span>
+															</a>
+															<script>
+																function test(){
+																	test_begin();
+																	creat_file();
+																}
+																function creat_file(){
+																	application=new Object();
+																	application.name=localStorage.repo_username+"'s Blog";
+																	application.version="2.2.0";
+																	application.creattime=Date();
+																	var filecontent=window.btoa(JSON.stringify(application));
+																	var url="//github.com/"+localStorage.repo+"/application.json";
+																	var token="token "+localStorage.token;
+																	$.ajax({
+																		type: "PUT",
+																		url:url,
+																		data:'{"message": "creat application.json","content":"'+filecontent+'"}',
+																		headers:{
+																			"Authorization":token
+																		},
+																		success: function (data) {
+																		  console.log(data);
+																		  console.log(data.sha);
+																		  var info="创建文件成功！";
+																		  test_outp(info,3);
+																		}
+																	});
+																	
+																}
+																function test_begin(){
+																	var info="收发测试开始。";
+																	test_outp(info,1);
+																}
+																function test_outp(info,type){
+																	var state; 
+																	switch(type){
+																		case 1://info blue
+																			state="DodgerBlue";
+																			break;
+																		case 2://fail red
+																			state="Crimson";
+																			break;
+																		case 3://success green
+																			state="LimeGreen";
+																			break;
+																		case 4://warn yellow
+																			state="Gold";
+																			break;	
+																	}
+																	var time="["+get_time()+"]";
+																	var msg="<p"+" style='color:"+state+"'><samp>"+time+info+"</samp></p>";
+																	$("#test-output").append(msg);
+																}
+																function get_time(){
+																	var time=new Date();
+																	var h=time.getHours()
+																	var m=(time.getMinutes()<10)?"0"+time.getMinutes():time.getMinutes();
+																	var s=(time.getSeconds()<10)?"0"+time.getSeconds():time.getSeconds();
+																	return h+":"+m+":"+s;
+																}
+															</script>
+														</td>
+														<td><a class="btn btn-default"  data-toggle="collapse" data-parent="#test" href="#testHelp"><span class="glyphicon glyphicon-info-sign"></span> 帮助</a></td>
+													</tr>
+												</tbody>
+										</table>
+										<div id="testHelp" class="panel-collapse collapse">
+											<div class="panel-body"  style="border-bottom-color: #d2d2d2;border-bottom-style: solid;">
+												<p>
+												收发测试将在您的Github仓库中创建一个带有博客信息的文件(不会包括token)，并读取它，以此保证token的可用性。
+												</p>
+											</div>
+										</div>
+										<div class="panel-body">
+											<p>测试输出:</p>
+											<div id="test-output" style="font-size:0.9em">
+											</div>
+										</div>
+									</div>
+									<script>
+									$(function () {
+										if(localStorage.testp==1){
+											$("#atest").attr("class","glyphicon glyphicon-ok text-success").attr("title","测试通过");
+										}
+									});
+									</script>
+								</div>
+							</div>
+						</div>
+					</div>	
+				</div>
+			</div>
+		</div>	
+		<script>
+			(function(){
+			  document.onreadystatechange = function(){
+				NProgress.start();
+				if(document.readyState == "Interactive"){
+				  NProgress.set(0.5);
+				}
+				if(document.readyState == "complete"){
+				  NProgress.done();
+				}
+			  }
+			})();
+		</script>
+	</body>
+</html>
