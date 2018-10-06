@@ -7,7 +7,7 @@
 		<link rel="stylesheet" type="text/css" href="source/css/style.css?v=2.0.0" >
 		<link rel="stylesheet" type="text/css" href="source/css/bootstrap.min.css?v=3.3.7">
 		<link rel="stylesheet" type="text/css" href="source/css/nprogress.css?v=0.2.0">
-		<link rel="stylesheet" type="text/css" href="blog/css/xmlns-c.css?v=1.0.0">
+		<link rel="stylesheet" type="text/css" href="blog/css/xmlns-c.css?v=1.0.1">
 		<script src="source/js/jquery-3.3.1.min.js"></script>
 		<script src="source/js/nprogress.js?v=0.2.0"></script>	
 		<script src="source/js/bootstrap.min.js?v=3.3.7"></script>
@@ -22,11 +22,11 @@
 						<h1 id="owner_name" class="text-center"><a id="back_index" href="/" title="胡言-主页" style="background-color: rgba(255,255,255,0);color:black;">胡言</a></h1>
 						<hr id="under_name">
 						<p>&nbsp;&nbsp;&nbsp;学生党-OIer-蒟蒻一枚，时不时会在这里发布一些题解报告博文，以及一些稀奇古怪的东西。</p>
-						<p>&nbsp;&nbsp;&nbsp;距离NOIp2018还有<span id="to_noip"></span>天。</p>
+						<p>&nbsp;&nbsp;&nbsp;距离NOIp2018初赛还有<span id="to_noip"></span>天。</p>
 						<script>
 						$(function () {
 							var date = new Date;
-							var noip = "2018/11/09 10:00:00";
+							var noip = "2018/10/13 12:00:00";
 							var to_noip = Math.floor((new Date(noip).getTime() - date.getTime())/(24*3600*1000));
 							$("#to_noip").append(to_noip);
 						})
@@ -46,7 +46,7 @@
 							</a>
 						</div>
 					</div>
-					<div id="tags_list">
+					<div id="tags_list" class="hidden-xs">
 						<div class="panel-group" id="lists" style="margin-bottom:0px;">
 						  <div class="panel panel-default">
 							<div id="by_tags_" class="panel-heading">
@@ -64,7 +64,7 @@
 							</div>
 						  </div>
 						  <div class="panel panel-default">
-							<div d="by_time_" class="panel-heading">
+							<div id="by_time_" class="panel-heading">
 							  <h4 class="panel-title">
 								<a data-toggle="collapse" data-parent="#lists" 
 								  href="#by_time">

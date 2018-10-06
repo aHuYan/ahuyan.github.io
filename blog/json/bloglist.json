@@ -1,12 +1,19 @@
 {
-	"number":1,
+	"number":2,
 	"blog":[
 		{
 			"title":"C++11中的regex库",
-			"profile":"<p>正则表达式可以用来查找替换特定字符串，有效的利用正则表达式<del>应该</del>会很方便。C++11中的正则表达式默认应用ECMAScript语法。<s>话说不知道NOIp支不支持C++11...</s>[/doge]</p><p>首先引入头文件：</p><pre><c:inc>#include</c:inc><c:lib>&lt;regex&gt</c:lib>;</pre>",
+			"profile":"<p>正则表达式可以用来查找替换特定字符串，有效的利用正则表达式<del>应该</del>会很方便。C++11中的正则表达式默认应用ECMAScript语法。<s>话说不知道NOIp支不支持C++11...</s>",
 			"date":"2018-07-25",
 			"url":"0",
 			"tags":["2","正则表达式","C++11"]
+		},
+		{
+			"title":"STL之对组（pair）",
+			"profile":"<p>对组是个好东西，可惜不会用？？！</p><p>STL中的map就是由<b>实值-键值</b>所形成的对组集合，但map里每个键只能出现一次，每个元素都有一个键...</p>",
+			"date":"2018-10-06",
+			"url":"1",
+			"tags":["1","STL"]
 		}
 	]
 }

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="zh-cmn-Hans" xmlns:c>
-	<div class="container-fluid">
 		<article class="archive">
 			<section class="text-center">
 				<p style="margin-top:10px;font-size:1.8em;font-weight:bold">C++11中的regex库</p>
@@ -16,7 +15,7 @@
 			<section style="font-size:1.1em;">
 				<p>正则表达式可以用来查找替换特定字符串，有效的利用正则表达式<del>应该</del>会很方便。C++11中的正则表达式默认应用ECMAScript语法。<s>话说不知道NOIp支不支持C++11...</s>[/doge]</p>
 				<p>首先引入头文件：</p>
-				<pre><c:inc>#include</c:inc><c:lib>&lt;regex&gt</c:lib>;</pre>
+				<pre><c:inc>#include</c:inc><c:lib>&lt;regex&gt;</c:lib></pre>
 				<p>注意还需要名称空间std。使用g++编译时要加上 -std=c++11 。</p>
 				<p>使用regex类型定义一个正则表达式，可包含附加常量选项：</p>
 				<pre><code><c:key>regex</c:key> <var>reg1</var>(<c:str>"abc"</c:str>);		<c:exp>//定义匹配"abc"的表达式reg1</c:exp></code><br><code><c:key>regex</c:key> <var>reg2</var>(<c:str>"abc"</c:str>,<c:cla>regex</c:cla><c:sro>::</c:sro><c:con>icase</c:con>);	<c:exp>//定义匹配"abc"的表达式reg2，不考虑大小写</c:exp></code></pre>
@@ -46,9 +45,8 @@
 			</section>
 			<section>
 				<p>参考资料：</p>
-				<p>[1](2017/6/16 06:51),"正则表达式库",[Online]Available:<a href="//zh.cppreference.com/w/cpp/regex">https://zh.cppreference.com/w/cpp/regex</a> (2018/7/25)</p>
-				<p>[2]"&lt;regex&gt;",[Online]Available:<a href="http://www.cplusplus.com/reference/regex/">http://www.cplusplus.com/reference/regex/</a> (2018/7/25)</p>
+				<p class="refer">[1](2017/6/16 06:51),"正则表达式库",[Online]Available:<a href="//zh.cppreference.com/w/cpp/regex">https://zh.cppreference.com/w/cpp/regex</a> (2018/7/25)</p>
+				<p class="refer">[2]"&lt;regex&gt;",[Online]Available:<a href="http://www.cplusplus.com/reference/regex/">http://www.cplusplus.com/reference/regex/</a> (2018/7/25)</p>
 			</section>
 		</article>
-	</div>
 </html>
