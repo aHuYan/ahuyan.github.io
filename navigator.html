@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+	<head>
+		<title>浏览器信息</title>
+		<meta charset="utf-8">
+		<script>
+			function testNav(){
+				var iarray = ["appCodeName","appName","appVersion","language","mimeTypes","onLine","userAgent"];
+				for(var i=0;i<iarray.length;i++){
+					document.write(iarray[i] + ":" + navigator[iarray[i]] + "<br>");
+				}
+				for(item in navigator){
+					document.write(item + ":" + navigator[item] + "<br>");
+				}
+			}
+			window.onload=testNav;
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
