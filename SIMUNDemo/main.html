@@ -1,0 +1,256 @@
+<!doctype html>
+<html>
+	<head>
+		<title>SIMUN Demo</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="static\css\bootstrap.min.css">
+		<link rel="stylesheet" href="static\css\style.css">
+	</head>
+	<body style="background-image:url('static/img/background.png');background-size:cover">
+		<div class="container-fluid">
+			<div class="row" id="app2">
+				<div class="col">
+					<div id="appName" class="dashboard">SIMUN > DashBoard</div>			
+					<div id="contries" class="card">
+						<h3 class="card-title">国家</h2>
+						<form>
+							<div class="form-group">
+								<textarea class="form-control" rows="14" id="add"></textarea>
+							</div>
+						</form>
+					</div>
+					<div id="logo" width="33.3%">
+						<img width="50%" src="static\img\logo.png">
+					</div>
+				</div>
+				<div class="col">
+					<div id="text" class="card">
+						<h3 class="card-title">文本区</h2>
+						<form>
+							<div class="form-group">
+								<textarea class="form-control" rows="17" id="textAdd"></textarea>
+							</div>
+						</form>
+					</div>
+					<div id="dongYi" class="card">
+						<button type="button" class="btn btn-lg" data-toggle="modal" data-target="#myModal">动议</button>
+						<div class="modal fade" id="myModal">
+							<div class="modal-dialog">
+								<div class="modal-content">
+						   
+									<!-- 模态框头部 -->
+									<div class="modal-header">
+										<h4 class="modal-title">动议</h4>
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+									</div>
+							   
+									<!-- 模态框主体 -->
+									<div class="modal-body">
+										<div class="btn-group-vertical center-block">
+											<button type="button" class="btn btn-outline-info" onclick="button1()" data-dismiss="modal">有支持核心磋商</button>
+											<button type="button" class="btn btn-outline-info"  onclick="button2()" data-dismiss="modal">自由磋商</button>
+											<button type="button" class="btn btn-outline-info" onclick="button3()"  data-dismiss="modal">自由辩论</button>
+											<button type="button" class="btn btn-outline-info" onclick="button4()"  data-dismiss="modal">有主持辩论</button>
+											<button type="button" class="btn btn-outline-info" onclick="button5()"  data-dismiss="modal">个人演讲</button>
+											<button type="button" class="btn btn-outline-info" onclick="button6()"  data-dismiss="modal">圆桌会议</button>
+											<button type="button" class="btn btn-outline-info" onclick="button7()"  data-dismiss="modal">投票</button>
+											<button type="button" class="btn btn-outline-info" onclick="button8()"  data-dismiss="modal">茶歇</button>
+											<button type="button" class="btn btn-outline-info"  onclick="button9()" data-dismiss="modal">休会</button>
+											<button type="button" class="btn btn-outline-info" onclick="button10()"  data-dismiss="modal">自定义</button>
+										</div>	
+									</div>
+							   
+									<!-- 模态框底部 -->
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+									</div>
+						   
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="fileIm" class="card">
+						 <form id="form1" runat="server">  
+							<div class="input-group">  
+								<input type="file" id="fileIn">  
+								<input type="button" value="获取文件信息" onclick="readFile()">  
+							</div>  
+						</form>  
+					</div>
+				</div>
+				<div class="col">
+					<div id="timeSet" class="card">
+						<h3 class="card-title">倒计时</h2>
+						<form>
+						<div class="col-9" style="position:absolute;float:left;left:0">
+							<div class="input-group">
+								<input type="text" class="form-control" placeholder="无则输0" id="timeM">
+								<div class="input-group-append">
+									<span class="input-group-text">分</span>
+								</div>
+								<input type="text" class="form-control" placeholder="" id="timeS">
+								<div class="input-group-append">
+									<span class="input-group-text">秒</span>
+								</div>
+							</div>
+							<div style="text-align:center;font-size:6em;font-family:SharpSansNo1" id="leftTime">00:00</div>
+						</div>
+						</form>
+						<form>
+							<div class="col-3" style="float:right;right:0">
+								<button type="button" class="btn" onclick="bottomStart()">开始</button>
+								<button type="button" class="btn" onclick="bottomPause()">暂停</button>
+								<button type="button" class="btn" onclick="bottomConti()">继续</button>
+								<button type="button" class="btn" onclick="bottomReset()">重置</button>
+							</div>
+						</form>
+					</div>
+					<div id="info"  class="card">
+						 <table class="table table-bordered" style="background-color:white">
+							<thead>
+							<tbody>
+							  <tr>
+								<td>出席人数：{{num1}}</td>
+								<td>缺席人数：{{num2}}</td>
+							  </tr>
+							  <tr>
+								<td>总人数：{{num3}}</td>
+								<td>简单多数：{{num4}}</td>
+							  </tr>
+							</tbody>
+						  </table>
+					</div>
+					<div id="vote"  class="card">
+						 <div style="text-align:center;font-size:2.5em;font-family:SharpSansNo1">支持数：{{voteFor}}</div>
+						 <div style="text-align:center;font-size:2.5em;font-family:SharpSansNo1">反对数：{{voteAga}}</div>
+						 <div style="margin:0 auto">
+							<button type="button" class="btn btn-lg btn-outline-primary" v-on:click="voteFor++">支持</button>
+							<button type="button" class="btn btn-lg btn-outline-danger" v-on:click="voteAga++">反对</button>
+							 <button type="button" class="btn btn-lg btn-outline-secondary">弃权</button>
+							  <button type="button" class="btn btn-lg btn-outline-warning" v-on:click="voteFor=0;voteAga=0">重置</button>
+						 </div>
+					</div>
+					<div id="outp"  class="card">
+						  <button type="button" class="btn btn-secondary" onclick="outp()">数据导出</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="static\js\jquery.min.js"></script>
+		<script src="static\js\vue.min.js"></script>
+		<script src="static\js\bootstrap.bundle.min.js"></script>
+		<script src="static\js\FileSaver.min.js"></script>
+		<script>
+		localStorage.filesNum=0;
+		document.getElementById("textAdd").value="";
+		function readFile(){
+			var file = document.getElementById("fileIn").files; 
+			var fileName=file[0].name;
+			localStorage.filesNum++;
+			localStorage["filesNum"+localStorage.filesNum]=fileName;
+			document.getElementById("textAdd").value+="\n"+fileName;
+		}
+		function button1(){
+			document.getElementById("textAdd").value+=getTime()+"\n"+"     代表动议一个有支持核心磋商，内容是     ，总时长为     ，每位代表     。\n是否通过：\n";
+		}
+		function button2(){
+			document.getElementById("textAdd").value+=getTime()+"\n"+"     代表动议一个自由磋商，总时长为     。\n是否通过：\n";
+		}
+		function button3(){
+			document.getElementById("textAdd").value+=getTime()+"\n"+"     代表动议一个自由辩论，总时长为     。\n是否通过：\n";
+		}
+		function button4(){
+			document.getElementById("textAdd").value+=getTime()+"\n"+"     代表动议一个有主持辩论，总时长为     。\n是否通过：\n";
+		}
+		function button5(){
+			document.getElementById("textAdd").value+=getTime()+"\n"+"     代表动议一个个人演讲，总时长为     。\n是否通过：\n";
+		}
+		function button6(){
+			document.getElementById("textAdd").value+=getTime()+"\n"+"     主席团动议一个圆桌会议，总时长为       。\n";
+		}
+		function button7(){
+			document.getElementById("textAdd").value+=getTime()+"\n"+"     代表动议一个投票。\n是否通过：\n";
+		}
+		function button8(){
+			document.getElementById("textAdd").value+=getTime()+"\n"+"     代表动议一个茶歇，总时长为     。\n是否通过：\n";
+		}
+		function button9(){
+			document.getElementById("textAdd").value+=getTime()+"\n"+"     代表动议休会。\n是否通过：\n";
+		}
+		function button10(){
+			document.getElementById("textAdd").value+=getTime()+"\n"+"     代表自定义动议。\n是否通过：\n";
+		}
+		function getTime(){
+			var time=new Date();
+			var h=time.getHours();
+			var m=(time.getMinutes()<10)?"0"+time.getMinutes():time.getMinutes();
+			var s=(time.getSeconds()<10)?"0"+time.getSeconds():time.getSeconds();
+			return "["+h+":"+m+":"+s+"]";
+		}
+		function bottomStart(){
+			setTime();
+			timer=setInterval(function(){ getCountdown() },1000);
+		}
+		function bottomPause(){
+			clearInterval(timer);
+			m=m1;s=s1;
+		}
+		function bottomConti(){
+			timer=setInterval(function(){ getCountdown() },1000);
+		}
+		function bottomReset(){
+			clearInterval(timer);
+			timeA.innerHTML ="00:00";
+			m=0;s=0;
+		}
+		var m,s,m1,s1;
+		var timeA=document.getElementById("leftTime");
+		function setTime(){
+			m=(document.getElementById("timeM").value=='')?0:parseInt(document.getElementById("timeM").value);
+			s=parseInt(document.getElementById("timeS").value);
+		}
+		function getCountdown(){
+			timeA.innerHTML =((m<10)?"0"+m:m)+":"+((s<10)?"0"+s:s);
+			m1=m;s1=s;
+				if( m == 0 && s == 0 ){
+					alert("计时结束");
+					bottomReset();
+                }else if( m >= 0 ){
+                    if( s > 0 ){
+                        s--;
+                    }else if( s == 0 ){
+                        m--;
+                        s = 59;
+                    }
+				}
+		}
+		var vm = new Vue({
+			el:"#info",
+			data:{
+				num1:localStorage.rollUp,
+				num2:localStorage.contriesNum-localStorage.rollUp,
+				num3:localStorage.contriesNum,
+				num4:localStorage.rollUp/3*2
+			}
+		});
+		var wm = new Vue({
+			el:"#vote",
+			data:{
+				voteAga:0,
+				voteFor:0
+			}
+		});
+		var data="";
+		function outp(){
+			localStorage.cont=document.getElementById("add").value;
+			localStorage.dongyi=document.getElementById("textAdd").value;
+			for (var i = 0; i < localStorage.length; i++) {
+				data+=(localStorage.key(i) + ":" + localStorage.getItem(localStorage.key(i)));       
+			}
+			var a=window.btoa(unescape(encodeURIComponent(data)));
+			var blob = new Blob([a], {type: "text/plain;charset=utf-8"});
+			saveAs(blob, "data.txt");
+		}
+		</script>
+	</body>
+</html>
