@@ -10,7 +10,7 @@
 ### Added
 - Sticky Post.
 
-##[0.3.0] - 2019-07-10
+## [0.3.0] - 2019-07-10
 ### Added
 - New style used in device which max width is 767px.
 - Animations form [Animate.css](https://daneden.github.io/animate.css/).
