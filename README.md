@@ -1,15 +1,14 @@
-# ahuyan.github.io
-## 描述
+# MaxBlog (Demo)
 
-萌新对html的尝试——个人博客+web应用
-[地址](https://ahuyan.github.io/)
+![MaxBlog Logo](https://github.com/aHuYan/ahuyan.github.io/blob/master/blog/source/media/blog-logo@0.5x.png)
 
-## 环境
+## 项目描述
 
- - HTML5
- - Javascript
- - CSS3
- - FireFox 浏览器
+***MaxBlog***是一个搭建在Github上的博客系统，目前仍在测试维护中。本README仍在完善。
+ 
+## 更新历史
+
+见[更新日志](https://github.com/aHuYan/ahuyan.github.io/blob/master/CHANGELOG.md)
  
 ## 作者
  HUYAN

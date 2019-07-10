@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" xmlns:c>
+		<article class="archive">
+			<section class="text-center">
+				<p class="archive-title">C++11中的regex库</p>
+				<p class="archive-sub">
+					<span class="glyphicon glyphicon-calendar"></span>
+					<span class="archive-date">2018/07/25 19:15</span>
+					<span class="glyphicon glyphicon-tags"></span>
+					<span class="tag">正则表达式</span>
+					<span class="tag-separater"></span>
+					<span class="tag">C++11</span>
+				</p>
+			</section>
+			<section class="archive-content">
+				<p>正则表达式可以用来查找替换特定字符串，有效的利用正则表达式<del>应该</del>会很方便。C++11中的正则表达式默认应用ECMAScript语法。<s>话说不知道NOIp支不支持C++11...</s>[/doge]</p>
+				<p>首先引入头文件：</p>
+				<pre><c:inc>#include</c:inc><c:lib>&lt;regex&gt;</c:lib></pre>
+				<p>注意还需要名称空间std。使用g++编译时要加上 -std=c++11 。</p>
+				<p>使用regex类型定义一个正则表达式，可包含附加常量选项：</p>
+				<pre><code><c:key>regex</c:key> <var>reg1</var>(<c:str>"abc"</c:str>);		<c:exp>//定义匹配"abc"的表达式reg1</c:exp></code><br><code><c:key>regex</c:key> <var>reg2</var>(<c:str>"abc"</c:str>,<c:cla>regex</c:cla><c:sro>::</c:sro><c:con>icase</c:con>);	<c:exp>//定义匹配"abc"的表达式reg2，不考虑大小写</c:exp></code></pre>
+				<div class="alert alert-danger" role="alert">
+				<p><span class="glyphicon glyphicon-alert"></span> 注意，匹配特定字符，要用 \ 转义。</p>
+				</div>
+				<p><b>匹配 regex_match()</b></p>
+				<p>regex_match()匹配正则表达式到整个字符序列，<c:key>bool</c:key>型的regex_match至多接受6个参数，这里介绍3个。</p>
+				<pre><c:fun>regex_match</c:fun>(目标字符串,[匹配结果],正则表达式)</pre>
+				<p>若regex_match匹配存在，则此函数返回真。由于目标字符串是<c:key>string</c:key>类型的，所以匹配结果是<c:key>smatch</c:key>类型的，由<c:key>smatch</c:key>定义。例如：
+				<pre><c:key>regex</c:key> <var>reg1</var>(<c:str>"abc"</c:str>);<br><c:key>string</c:key> <var>str1</var> = <c:str>"abc"</c:str>;<br><c:key>string</c:key> <var>str2</var> = <c:str>"abcde"</c:str>;<br><c:key>smatch</c:key> <var>m1</var>;<br><c:key>smatch</c:key> <var>m2</var>;<br><c:key>cout</c:key>&lt;&lt;<c:fun>regex_match</c:fun>(<var>str1</var>,<var>m1</var>,<var><var>reg1</var></var>)&lt;&lt;<c:key>endl</c:key>;<br><c:key>cout</c:key>&lt;&lt;<c:fun>regex_match</c:fun>(<var>str2</var>,<var>m2</var>,<var><var>reg1</var></var>)&lt;&lt;<c:key>endl</c:key>;<br><c:key>cout</c:key>&lt;&lt;"<var>str1</var>:"&lt;&lt;<var>m1</var><c:sro>.</c:sro><c:fun>str()</c:fun>&lt;&lt;<c:key>endl</c:key>;<br><c:key>cout</c:key>&lt;&lt;"<var>str2</var>:"&lt;&lt;<var>m2</var><c:sro>.</c:sro><c:fun>str()</c:fun>&lt;&lt;<c:key>endl</c:key>;</pre>
+				<p>输出结果：</p>
+				<pre>1<br>0<br>str1:abc<br>str2:</pre>
+				<p><c:key>smatch</c:key>是<c:cla>match_results</c:cla>类中的一个类型，常见的成员函数有</p>
+				<div class="well">empty() 匹配存在则返回假<br>size() 返回子匹配数<br>str() 返回表示指定匹配或子匹配的字符串</div>
+				<p>用m1[0]，m2[0]也可以返回匹配字符串。</p>
+				<p><b>查找 regex_search()</b></p>
+				<p>regex_search()匹配正则表达式到字符序列的任何部分，即任何子序列，和regex_match()用法类似。但因为regex_match只考虑完全匹配，故同一表达式可能在regex_match和regex_search间给出不同的匹配： </p>
+				<pre><c:key>regex</c:key> <var>re</var>(<c:str>"Get|GetValue"</c:str>);<br><c:key>cmatch</c:key> <var>m</var>;				<c:exp>//由于下文目标字符串是字符数组型的</c:exp><br><c:fun>regex_search</c:fun>(<c:str>"GetValue"</c:str>, <var>m</var>, <var>re</var>);	<c:exp>//返回 true ，且 <var>m</var>[0] 含 "Get"</c:exp><br><c:fun>regex_match</c:fun> (<c:str>"GetValue"</c:str>, <var>m</var>, <var>re</var>);	<c:exp>//返回 true ，且 <var>m</var>[0] 含 "GetValue"</c:exp><br><c:fun>regex_search</c:fun>(<c:str>"GetValues"</c:str>, <var>m</var>, <var>re</var>);	<c:exp>//返回 true ，且 <var>m</var>[0] 含 "Get"</c:exp><br><c:fun>regex_match</c:fun> (<c:str>"GetValues"</c:str>, <var>m</var>, <var>re</var>);	<c:exp>//返回 false</c:exp></pre>
+				<p>例子来自<a href="//zh.cppreference.com/w/cpp/regex/regex_match#.E6.B3.A8.E6.84.8F" target="_blank">cppreference</a>.</p>
+				<p><b>替换 regex_replace()</b></p>
+				<p>regex_replace()以格式化的替换文本来替换正则表达式匹配的出现位置，返回替换结果。</p>
+				<pre><c:fun>regex_replace</c:fun>(目标字符串,正则表达式,替换格式 字符串)</pre>
+				<br>
+				<p>其实主要还是要会写正则表达式·······</p>
+				<br>
+			</section>
+			<section>
+				<p>参考资料：</p>
+				<p class="refer">[1](2017/6/16 06:51),"正则表达式库",[Online]Available:<a href="//zh.cppreference.com/w/cpp/regex">https://zh.cppreference.com/w/cpp/regex</a> (2018/7/25)</p>
+				<p class="refer">[2]"&lt;regex&gt;",[Online]Available:<a href="http://www.cplusplus.com/reference/regex/">http://www.cplusplus.com/reference/regex/</a> (2018/7/25)</p>
+			</section>
+		</article>
+</html>

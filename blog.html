@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" xmlns:c>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>胡言的博客</title>
+		<link rel="stylesheet" type="text/css" href="source/css/bootstrap.min.css?v=3.3.7">
+		<link rel="stylesheet" type="text/css" href="source/css/style.css?v=0.0.3" >
+		<link rel="stylesheet" type="text/css" href="source/css/nprogress.css?v=0.2.0">
+		<link rel="stylesheet" type="text/css" href="source/css/animate.css">
+		<script src="source/js/jquery-3.3.1.min.js"></script>
+	</head>
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<aside class="col-md-3 col-sm-4 col-xs-12">
+					<div id="owner-info" class="fedeIn animated">
+						<h1 id="owner-name" class="text-center"><a id="back-index" href="/" title="胡言-主页" style="background-color: rgba(255,255,255,0);color:black;">胡言</a></h1>
+						<hr id="under-name">
+						<p>&nbsp;&nbsp;&nbsp;学生党-OIer-蒟蒻一枚，时不时会在这里发布一些题解报告博文，以及一些稀奇古怪的东西。</p>
+						<p>&nbsp;&nbsp;&nbsp;距离NOIp2019还有<span id="to-noip"></span>天。</p>
+						<script>
+						$(function () {
+							var date = new Date;
+							var noip = "2019/11/08 14:00:00";
+							var toNoip = Math.floor((new Date(noip).getTime() - date.getTime()) / (24 * 3600 * 1000));
+							$("#to-noip").append(toNoip)
+						})
+						</script>
+						<div class="text-center">
+							<a class="btn btn-default btn-lg" href="mailto:huyan.zh@foxmail.com" title="发邮件" target="_blank">
+								<span class="glyphicon glyphicon-envelope info_ico" ></span>
+							</a>
+							<a class="btn btn-default btn-lg" href="//github.com/aHuYan/ahuyan.github.io" title="Github repository"  target="_blank">
+								<span class="icon-github" ></span>
+							</a>
+							<a class="btn btn-default btn-lg" href="#" title="设置功能正在开发">
+								<span class="glyphicon glyphicon-cog info_ico" ></span>
+							</a>
+							<a class="btn btn-default btn-lg" href="about" title="关于我"  target="_blank">
+								<span class="glyphicon glyphicon-user info_ico" ></span>
+							</a>
+						</div>
+					</div>
+					<div id="tags-list" class="hidden-xs fedeIn animated">
+						<div class="panel-group" id="lists" style="margin-bottom:0px;">
+						  <div class="panel panel-default">
+							<div id="by-tags-" class="panel-heading">
+							  <h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#lists" 
+								  href="#by-tags">
+								  按标签分类 <span class="caret"></span>
+								 </a>
+							  </h4>
+							</div>
+							<div id="by-tags" class="panel-collapse collapse">
+								<div id="list-tags" class="panel-body">
+									
+								</div>
+							</div>
+						  </div>
+						  <div class="panel panel-default">
+							<div id="by-time-" class="panel-heading">
+							  <h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#lists" 
+								  href="#by-time">
+								 按时间分类 <span class="caret"></span>
+								 </a>
+							  </h4>
+							</div>
+							<div id="by-time" class="panel-collapse collapse">
+							  <div class="panel-body">
+								
+							</div>
+							</div>
+						  </div>
+						  <div class="panel panel-default">
+							<div id="by-weather-" class="panel-heading">
+							  <h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#lists" 
+								  href="#by-weather">
+								  按天气分类 <span class="caret"></span>
+								  </a>
+							  </h4>
+							</div>
+							<div id="by-weather" class="panel-collapse collapse">
+								<div class="panel-body">
+								    
+								</div>
+							</div>
+						  </div>
+						</div>
+					</div>
+					<script>
+						$('#by_tags').on('show.bs.collapse', function () {
+							$('#by_tags_').addClass("dropup");
+						}).on('hidden.bs.collapse', function () {
+							$('#by_tags_').removeClass("dropup");
+						});
+						$('#by_time').on('show.bs.collapse', function () {
+							$('#by_time_').addClass("dropup");
+						}).on('hidden.bs.collapse', function () {
+							$('#by_time_').removeClass("dropup");
+						});
+						$('#by_weather').on('show.bs.collapse', function () {
+							$('#by_weather_').addClass("dropup");
+						}).on('hidden.bs.collapse', function () {
+							$('#by_weather_').removeClass("dropup");
+						});
+					</script>
+					<div id="copyrights-aside"  class="hidden-xs fedeIn animated">
+						<p class="text-center"><br>
+							Copyright © 2019 HUYAN <br>
+							All Rights Reserved<br>
+							<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">
+								<img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png">
+							</a><br>
+							&nbsp;&nbsp;&nbsp;本博客系列原创作品采用<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可。
+							<br>
+							<a href="about#license" target="_blank">了解本博客详细的版权声明</a>
+						</p>
+					</div>
+				</aside>
+				<div class="col-md-9 col-sm-8 col-xs-12">
+					<div id="main">
+						<div class="input-group">
+							<input id="search" type="text" class="form-control" placeholder="搜索功能正在开发！" disabled>
+							<span class="input-group-btn">
+								<button class="btn btn-default" type="button" onclick="go_search()" title="搜索" disabled>
+									<span class="glyphicon glyphicon-search"></span>
+								</button>
+								<a id="popo" tabindex="0" class="btn btn-default hidden-xs" role="button" data-toggle="popover" data-trigger="focus" title="在手机上浏览" data-placement="bottom" data-container="body">
+									<span class="glyphicon glyphicon-qrcode"></span>
+								</a>
+								<a class="btn btn-default" role="button" title="RSS订阅" href="/feed/huyan_rss.xml" >
+									<span class="social social-rss"></span>
+								</a>
+								<a class="btn btn-default" role="button" title="博客列表" href="/blog" >
+									<span class="glyphicon glyphicon-th-list"></span>
+								</a>
+							</span>
+						</div>
+						<script>
+						 $(function () {
+							var QRcode = '<div id="qrcode"></div><sc' + 'ript>(function(){new QRCode("qrcode", {text:window.location.href,width:100,height:100});}());</scr' + 'ipt>';
+							$("#popo").popover({
+								html:true,
+								content:QRcode
+							}); 
+						});
+						</script>
+						<div id="blog-content">
+						</div>
+						<div id="blog-list">
+						</div>
+					</div>
+					<div id="copyrights-bottom" class="visible-xs fedeIn animated">
+						<p class="text-center"><br>
+							Copyright © 2019 HUYAN , All Rights Reserved<br>
+							<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">
+								<img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png">
+							</a><br>
+							&nbsp;&nbsp;&nbsp;本博客系列原创作品采用<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可。
+							<br>
+							<a href="about#license" target="_blank">了解本博客详细的版权声明</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>	
+		<script src="source/js/nprogress.js?v=0.2.0"></script>	
+		<script src="source/js/bootstrap.min.js?v=3.3.7"></script>
+		<script src="blog/source/js/list.js?v=0.0.3"></script>
+		<script src="source/js/qrcode.js"></script>
+		<script>
+			(function(){
+			  document.onreadystatechange = function(){
+				NProgress.start();
+				if(document.readyState == "Interactive"){
+				  NProgress.set(0.5);
+				}
+				if(document.readyState == "complete"){
+				  NProgress.done();
+				}
+			  }
+			})();
+		</script>
+	</body>
+</html>
