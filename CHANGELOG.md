@@ -5,14 +5,14 @@
 ## [Unreleased]
 ### Changed
 - Stop using *jQuery* when *[Bootstrap5](https://github.com/twbs/bootstrap/pull/23586)* is released.
-- Use modules to avoid displaying the same thing repeatedly.
+- Use templates.
 
 ### Added
 - Sticky Post.
 
 ## [0.3.0] - 2019-07-10
 ### Added
-- New style used in device which max width is 767px.
+- New style used in device whose max-width is 767px.
 - Animations form [Animate.css](https://daneden.github.io/animate.css/).
 - URL parameter *type* to display different types of contents based on styles.
 - Listen on scrolling the page to get more list items of contents.
