@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="胡言">
+
+
+
+
+
+<title>【转载】The Roots Of Lisp by Paul Graham | 胡言的博客</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Huyan&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Huyan&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">【转载】The Roots Of Lisp by Paul Graham</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">胡言</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">二月 22, 2020&nbsp;&nbsp;13:49:38</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Programming/">Programming</a>
+                            
+                                <a href="/categories/Programming/Lisp/">Lisp</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p><em>Draft, January 18, 2002.</em></p>
+<p>In 1960, John McCarthy published a remarkable paper in which he did for programming something like what Euclid did for geometry<sup>1</sup>.He showed how, given a handful of simple operators and a notation for functions, you can build a whole programming language. He called this language Lisp, for “List Processing,” because one of his key ideas was to use a simple data structure called a list for both code and data.</p>
+<blockquote>
+<p><sup>1</sup> “Recursive Functions of Symbolic Expressions and Their Computation by Machine, Part I.” Communications of the ACM 3:4, April 1960, pp. 184-195.</p>
+</blockquote>
+<p>It’s worth understanding what McCarthy discovered, not just as a landmark in the history of computew, but as a model for what programming is tending to become in our own time. It seems to me that，there have been two really clean, consistent，models of programming so far: the C model and the Lisp model. These two seem points of high ground, with swampy lowlands between them. As computers have grown more powerful, the new languages being developed have been moving steadily to ward the Lisp model. A popular recipe for new programming languages in the past 20 years has been to take the C model of computing and add to it, piecemeal, parts taken from the Lisp model, like runtime typing and garbage collection.</p>
+<p>In this article I’m going to try to explain in the simplest possible terms what McCarthy discovered. The point is not just to leafn about an interesting theoretical result someone figured out forty years ago, but to show where languages are heading. The unusual thing about Lisp——in fact, the defining quality of Lisp——is that，it can be written in it self To understand what Mc-Cafthy meant by this, we’re going to retrace his steps, with his mathematical notation translated into running Common Lisp code.</p>
+<h2 id="1-Seven-Primitive-Operators"><a href="#1-Seven-Primitive-Operators" class="headerlink" title="1 Seven Primitive Operators"></a>1 Seven Primitive Operators</h2><p>To start with, we define an <code>expression</code>. An expression is either an <code>atom</code>, which is a sequence of letters (e.g. <code>foo</code>), or a <code>list</code> of zero or more expressions, separated by whit espace and enclosed by parentheses. Here are some expressions:</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">foo</span><br><span class="line">()</span><br><span class="line">(<span class="name">foo</span>)</span><br><span class="line">(<span class="name">foo</span> bar)</span><br><span class="line">(<span class="name">a</span> b (<span class="name">c</span>) d)</span><br></pre></td></tr></table></figure>
+<p>The last expression is a list of four elements, the third of which is itself a list of one element.<br>In arithmetic the expression 1 + 1 has the value 2. Valid Lisp expressions also have values. If an expression <code>e</code> yields a value <code>v</code> we say that，<code>e returns v</code>. Our next step is to define what kinds of expressions there can be, and what value each kind returns.</p>
+<p>If an expression is a list, we call the first element the <em>operator</em> and the remaining elements the <em>arguments</em>. We are going to define seven primitive (in the sense of axioms) operators: <code>quote</code>, <code>atom</code>, <code>eq</code>, <code>car</code>, <code>cdr</code>, <code>cons</code>, and <code>cond</code>.</p>
+<p>1.<code>(quote x)</code> returns <code>x</code>. For readability we will abbreviate <code>(quote x)</code> as <code>&#39;x</code>.</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; (<span class="name">quote</span> a)</span><br><span class="line">a</span><br><span class="line">&gt; 'a</span><br><span class="line">a</span><br><span class="line">&gt; (<span class="name">quote</span> (a b c))</span><br><span class="line">(<span class="name">a</span> b c)</span><br></pre></td></tr></table></figure>
+<p>2.<code>(atom x)</code> returns the atom <code>t</code> if the value of <code>x</code> is an atom or the empty list. Otherwise it returns <code>()</code>. In Lisp we conventionally use the atom <code>t</code> to represent truth, and the empty list to represent falsity.</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; (<span class="name">atom</span> 'a)</span><br><span class="line"><span class="literal">t</span></span><br><span class="line">&gt; (<span class="name">atom</span> '(a b c))</span><br><span class="line"><span class="number">0</span></span><br><span class="line">&gt; (<span class="name">atom</span> '())</span><br><span class="line"><span class="literal">t</span></span><br></pre></td></tr></table></figure>
+<p>Now that，we have an operator whose argument is evaluated we can show what <code>quote</code> is for. By quoting a list we protect it from evaluation. An unquoted list given as an argument to an operator like <code>atom</code> is treated as code:</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;  (<span class="name">atom</span> (<span class="name">atom</span> 'a))</span><br><span class="line"><span class="literal">t</span></span><br></pre></td></tr></table></figure>
+<p>whereas a quoted list is treated as mere list, in this case a list of two elements:</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;  (<span class="name">atom</span> '(atom 'a))</span><br><span class="line"><span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>This corresponds to the way we use quotes in English. Cambridge is a town in Massachusetts that，contains about 90,000 people. “Cambridge” is a word that contains nine letters.</p>
+<p>Quote may seem a bit of a foreign concept, because few other languages have anything like it. It’s closely tied to one of the most distinctive features of Lisp: code and data are made out of the same data structures, and the quote operator is the way we distinguish between them.</p>
+<p>3.<code>(eq x y)</code> returns <code>t</code> if the values of <code>x</code> and <code>y</code> are the same atom or both the empty list, and <code>()</code> otherwise.</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; (<span class="name">eq</span>  'a 'a)</span><br><span class="line"><span class="literal">t</span></span><br><span class="line">&gt; (<span class="name">eq</span> 'a 'b)</span><br><span class="line"><span class="number">0</span></span><br><span class="line">&gt; (<span class="name">eq</span> '() '())</span><br><span class="line"><span class="literal">t</span></span><br></pre></td></tr></table></figure>
+<p>4.<code>(car x)</code> expects the value of <code>x</code> to be a list, and returns its first element.</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; (<span class="name">car</span> '(a b c))</span><br><span class="line">a</span><br></pre></td></tr></table></figure>
+<p>5.<code>(cdr x)</code> expects the value of <code>x</code> to be a list, and returns everything after the first element.</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; (<span class="name">cdr</span> '(a b c))</span><br><span class="line">(<span class="name">b</span> c)</span><br></pre></td></tr></table></figure>
+<p>6.<code>(cons x y)</code> expects the value of <code>y</code> to be a list, and returns a list containing the value of  <code>x</code> followed by the elements of the value of <code>y</code>.</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; (<span class="name">cons</span> 'a '(b c))</span><br><span class="line">(<span class="name">a</span> b c)</span><br><span class="line">&gt; (<span class="name">cons</span> 'a (<span class="name">cons</span> 'b (<span class="name">cons</span> 'c '())))</span><br><span class="line">(<span class="name">a</span> b c)</span><br><span class="line">&gt; (<span class="name">car</span> (<span class="name">cons</span> 'a '(b c)))</span><br><span class="line">a</span><br><span class="line">&gt; (<span class="name">cdr</span> (<span class="name">cons</span> 'a '(b c)))</span><br><span class="line">(<span class="name">b</span> c)</span><br></pre></td></tr></table></figure>
+<p>7.<code>(cond (p1 e1) ... (pn en))</code> is evaluated as follows. The <code>p</code> expressions are evaluated in order until one returns <code>t</code>. When one is found, the value of the corresponding <code>e</code> expression is returned as the value of the whole <code>cond</code> expression.</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; (<span class="name">cond</span> ((<span class="name">eq</span> 'a 'b) 'first)</span><br><span class="line">		((<span class="name">atom</span> 'a) 'second))</span><br><span class="line">second</span><br></pre></td></tr></table></figure>
+<p>In five of our seven primitive operators, the arguments are always evaluated when an expression beginning with that，operator is evaluated.<sup>2</sup> We will call an operator of that，type a <code>function</code>.</p>
+<blockquote>
+<p><sup>2</sup> Expressions beginning with the other two operators, <code>quote</code> and <code>cond</code>, are evaluated differently. When a <code>quote</code> expression is evaluated, its argument is not evaluated, but is simply returned as the value of the whole <code>quote</code> expression. And in a valid <code>cond</code> expression, only an L-shaped path of subexpressions will be evaluated.</p>
+</blockquote>
+<h2 id="2-Denoting-Functions"><a href="#2-Denoting-Functions" class="headerlink" title="2 Denoting Functions"></a>2 Denoting Functions</h2><p>Next we define a notation for describing functions. A function is expressed as <code>(lambda (px …pn) e)</code>, where <code>pi … pn</code> are atoms (called <code>parameters</code>) and <code>e</code> is an expression. An expression whose first element is such an expression</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">((<span class="name">lambda</span> (<span class="name">pi</span> .…pn) e) …an)</span><br></pre></td></tr></table></figure>
+<p>is called a <code>function call</code> and its value is computed as follows. Each expression <code>ai</code> is evaluated. Then <code>e</code> is evaluated. During the evaluation of <code>e</code>, the value of any occurrence of one of the <code>pi</code> is the value of the corresponding <code>ai</code> in the most recent function calk</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; ((<span class="name">lambda</span> (<span class="name">x</span>) (<span class="name">cons</span> x '(b))) 'a)</span><br><span class="line">(<span class="name">a</span> b)</span><br><span class="line">&gt; ((<span class="name">lambda</span> (<span class="name">x</span> y) (<span class="name">cons</span> x (<span class="name">cdr</span> y)))</span><br><span class="line">	'z</span><br><span class="line">	'(a b c))</span><br><span class="line">(<span class="name">z</span> b c)</span><br></pre></td></tr></table></figure>
+<p>If an expression has as its first element an atom <code>f</code> that, is not one of the primitive operators</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">f</span> ai … an)</span><br></pre></td></tr></table></figure>
+<p>and the value of <code>f</code> is a function <code>(lambda (pi …pn) e)</code> then the value of the expression is the value of</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">((<span class="name">lambda</span> (<span class="name">p1</span> … pn) e) a1 ... an)</span><br></pre></td></tr></table></figure>
+<p>In other words, parameters can be used as operators in expressions as well as arguments:</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; ((<span class="name">lambda</span> (<span class="name">f</span>) (<span class="name">f</span>  '(b c)))</span><br><span class="line">	'(lambda (x) (cons 'a x)))</span><br><span class="line">(<span class="name">a</span> b c)</span><br></pre></td></tr></table></figure>
+<p>There is another notation for functions that，enables the function to refer to 计self, thereby giving us a convenient way to define recursive functions<sup>3</sup> The notation</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">label</span> f  (<span class="name">lambda</span> (<span class="name">p1</span> … pn) e))</span><br></pre></td></tr></table></figure>
+<p>denotes a function that，behaves like <code>(lambda (pi … pn) e)</code>, with the additional property that，an occurrence of <code>f</code> within <code>e</code> will evaluate to the <code>label</code> expression, as if <code>f</code> were a parameter of the function.</p>
+<blockquote>
+<p><sup>3</sup> Logically we don’t need to define a new notation for this. We could define recursive functions in our existing notation using a function on functions called the Y combinator. It may be that McCarthy did not know about the Y combinator when he wrote his paper; in any case, <code>label</code> notation is more readable.</p>
+</blockquote>
+<p>Suppose we want to define a function <code>(subst x y z)</code>, which takes an expression <code>x</code>,an atom <code>y</code>, and a list <code>z</code> and returns a list like <code>z</code> but with each instance of <code>y</code> (at any depth of nesting) in <code>z</code> replaced by <code>x</code>.</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; (<span class="name">subst</span> 'm 'b '(a b (a b c) d))</span><br><span class="line">(<span class="name">a</span> m (<span class="name">a</span> m c) d)</span><br></pre></td></tr></table></figure>
+<p>We can denote this function as</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">label</span> subst (<span class="name">lambda</span> (<span class="name">x</span> y z)</span><br><span class="line">               (<span class="name">cond</span> ((<span class="name">atom</span> z)</span><br><span class="line">                      (<span class="name">cond</span> ((<span class="name">eq</span> z y) x)</span><br><span class="line">                            ('t z)))</span><br><span class="line">                     ('t (<span class="name">cons</span> (<span class="name">subst</span> x y (<span class="name">car</span> z))</span><br><span class="line">                               (<span class="name">subst</span> x y (<span class="name">cdr</span> z)))))))</span><br></pre></td></tr></table></figure>
+<p>We will abbreviate <code>f = (label f (lambda (p1 ... p2) e))</code>as</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">defun</span> subst (<span class="name">x</span> y z)</span><br><span class="line">  (<span class="name">cond</span> ((<span class="name">atom</span> z)</span><br><span class="line">         (<span class="name">cond</span> ((<span class="name">eq</span> z y) x)</span><br><span class="line">               ('t z)))</span><br><span class="line">        ('t (<span class="name">cons</span> (<span class="name">subst</span> x y (<span class="name">car</span> z))</span><br><span class="line">                  (subst x y (cdr z)))))))</span><br></pre></td></tr></table></figure>
+<p>Incidentally, we see here how to get a default clause in a <code>cond</code> expression. A clause whose first element is <code>&#39;t</code> will always succeed. So</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">cond</span> (<span class="name">x</span> y) ('t z))</span><br></pre></td></tr></table></figure>
+<p>is equivalent to what we might write in a language with syntax as</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if x then y else z</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-Some-Functions"><a href="#3-Some-Functions" class="headerlink" title="3 Some Functions"></a>3 Some Functions</h2><p>Now that，we have a way of expressing functions, we define some new ones in terms of our seven primitive operators. First it will be convenient to introduce some abbreviations for common patterns. We will use <code>cxr</code> where <code>x</code> is a sequence of <code>a</code>s or <code>d</code>s, as an abbreviation for the corresponding composition of <code>car</code> and <code>cdr</code>. So for example <code>(cadr e)</code> is an abbreviation for <code>(car (cdr e))</code>, which returns the second element of <code>e</code>.</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; (<span class="name">cadr</span> '((a b) (c d) e))</span><br><span class="line">(<span class="name">c</span> d)</span><br><span class="line">&gt; (<span class="name">caddr</span> '((a b) (c d) e))</span><br><span class="line">e</span><br><span class="line">&gt; (<span class="name">cdar</span> '((a b) (c d) e))</span><br><span class="line">(<span class="name">b</span>)</span><br></pre></td></tr></table></figure>
+<p>Also, we will use <code>(list e1 … en)</code> for <code>(cons e1 ... (cons en  &#39;()) ... )</code>.</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; (<span class="name">cons</span> 'a (<span class="name">cons</span> 'b (<span class="name">cons</span> 'c '())))</span><br><span class="line">(<span class="name">a</span> b c)</span><br><span class="line">&gt; (<span class="name">list</span> 'a 'b 'c)</span><br><span class="line">(<span class="name">a</span> b c)</span><br></pre></td></tr></table></figure>
+<p>Now we define some new functions. I’ve changed the names of these functions by adding periods at the end. This distinguishes primitive functions from those defined in terms of them, and also avoids clashes with existing Common Lisp functions.</p>
+<p>1.<code>(null. x)</code> tests whether its argument is the empty list.</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">defun</span> null. (<span class="name">x</span>)</span><br><span class="line">  (<span class="name">eq</span> x '()))</span><br><span class="line">&gt; (<span class="name">null</span>. ' a)</span><br><span class="line">()</span><br><span class="line">&gt; (<span class="name">null</span>. '())</span><br><span class="line"><span class="literal">t</span></span><br></pre></td></tr></table></figure>
+<p>2.<code>(and. x y)</code> returns <code>t</code> if both its arguments do and () otherwise.</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">defun</span> and. (<span class="name">x</span> y)</span><br><span class="line">  (<span class="name">cond</span> (<span class="name">x</span> (<span class="name">cond</span> (<span class="name">y</span> 't) ('t '())))</span><br><span class="line">        ('t '())))</span><br><span class="line">&gt; (<span class="name">and</span>. (<span class="name">atom</span> 'a) (<span class="name">eq</span> 'a 'a))</span><br><span class="line"><span class="literal">t</span></span><br><span class="line">&gt; (<span class="name">and</span>. (<span class="name">atom</span> 'a) (<span class="name">eq</span> 'a 'b))</span><br><span class="line">()</span><br></pre></td></tr></table></figure>
+<p>3.<code>(not. x)</code> freturns <code>t</code> if its argument returns (), and () if its argument returns <code>t</code>.</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">defun</span> not. (<span class="name">x</span>)</span><br><span class="line">  (<span class="name">cond</span> (<span class="name">x</span> '())</span><br><span class="line">        ('t 't)))</span><br><span class="line">&gt; (<span class="name">not</span> (<span class="name">eq</span> 'a 'a)) </span><br><span class="line">()</span><br><span class="line">&gt; (<span class="name">not</span> (<span class="name">eq</span> 'a 'b)) </span><br><span class="line"><span class="literal">t</span></span><br></pre></td></tr></table></figure>
+<p>4.<code>(append. x y)</code>takes two lists and returns their concatenation.</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">defun</span> append. (<span class="name">x</span> y)</span><br><span class="line">  (<span class="name">cond</span> ((<span class="name">null</span>. x) y)</span><br><span class="line">        ('t (<span class="name">cons</span> (<span class="name">car</span> x) (<span class="name">append</span>, (<span class="name">cdr</span> x) y)))))</span><br><span class="line">&gt; (<span class="name">append</span>. '(a b) '(c d))</span><br><span class="line">(<span class="name">a</span> b e d)</span><br><span class="line">&gt; (<span class="name">append</span>. '() '(c d))</span><br><span class="line">(<span class="name">c</span> d)</span><br></pre></td></tr></table></figure>
+<p>5.<code>(pair. x y)</code> takes two lists of the same length and returns a list of two element lists containing successive pairs of an element from each.</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">defun</span> pair. (<span class="name">x</span> y)</span><br><span class="line">  (<span class="name">cond</span> ((<span class="name">and</span>. (<span class="name">null</span>. x) (<span class="name">null</span>. y)) '())</span><br><span class="line">        ((<span class="name">and</span>. (<span class="name">not</span>. (<span class="name">atom</span> x)) (<span class="name">not</span>. (<span class="name">atom</span> y)))</span><br><span class="line">        (<span class="name">cons</span> (<span class="name">list</span> (<span class="name">car</span> x) (<span class="name">car</span> y))</span><br><span class="line">                    (<span class="name">pair</span>. (<span class="name">cdr</span> x) (<span class="name">cdr</span> y))))))</span><br><span class="line">&gt; (<span class="name">pair</span>. '(x y z) '(a b c)) </span><br><span class="line">((<span class="name">x</span> a) (<span class="name">y</span> b) (<span class="name">z</span> c))</span><br></pre></td></tr></table></figure>
+<p>6.<code>(assoc. x y)</code> takes an atom <code>x</code> and a list <code>y</code> of the form created by <code>pair.</code>, and returns the second element of the first list in <code>y</code> whose first element is<code>x</code>.</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">defun</span> assoc. (<span class="name">x</span> y)</span><br><span class="line">  (<span class="name">cond</span> ((<span class="name">eq</span> (<span class="name">caar</span> y) x) (<span class="name">cadar</span> y)) </span><br><span class="line">        ('t (<span class="name">assoc</span>. x (<span class="name">cdr</span> y)))))</span><br><span class="line">&gt; (<span class="name">assoc</span>. '((x a) (y b)))</span><br><span class="line">a</span><br><span class="line">&gt; (<span class="name">assoc</span>. '((x new) (x a) (y b)))</span><br><span class="line">new</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-The-Surprise"><a href="#4-The-Surprise" class="headerlink" title="4 The Surprise"></a>4 The Surprise</h2><p>So we can define functions that，concatenate lists, substitute one expression for another, etc. An elegant notation, perhaps, but so what? Now comes the surprise. We can also, it turns out, write a functions that，acts as an interpreter for our language: a function that，takes as an argument any Lisp expression, and returns its value. Here it is:</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">defun</span> eval. (<span class="name">e</span> a)</span><br><span class="line">  (<span class="name">cond</span></span><br><span class="line">    ((<span class="name">atom</span> e) (<span class="name">assoc</span>. e a))</span><br><span class="line">    ((<span class="name">atom</span> (<span class="name">car</span> e))</span><br><span class="line">     (<span class="name">cond</span></span><br><span class="line">       ((<span class="name">eq</span> (<span class="name">car</span> e) ’quote) (<span class="name">cadr</span> e))</span><br><span class="line">       ((<span class="name">eq</span> (<span class="name">car</span> e) ’atom)  (<span class="name">atom</span>   (<span class="name">eval</span>. (<span class="name">cadr</span> e) a)))</span><br><span class="line">       ((<span class="name">eq</span> (<span class="name">car</span> e) ’eq)    (<span class="name">eq</span>	    (<span class="name">eval</span>. (<span class="name">cadr</span> e) a)</span><br><span class="line">                                    (<span class="name">eval</span>. (<span class="name">caddr</span> e) a))) </span><br><span class="line">       ((<span class="name">eq</span> (<span class="name">car</span> e) ’car)   (<span class="name">car</span>    (<span class="name">eval</span>. (<span class="name">cadr</span> e) a)))</span><br><span class="line">       ((<span class="name">eq</span> (<span class="name">car</span> e) ’cdr)   (<span class="name">cdr</span>    (<span class="name">eval</span>. (<span class="name">cadr</span> e) a)))</span><br><span class="line">       ((<span class="name">eq</span> (<span class="name">car</span> e) ’cons)  (<span class="name">cons</span>   (<span class="name">eval</span>. (<span class="name">cadr</span> e) a)</span><br><span class="line">                                    (<span class="name">eval</span>. (<span class="name">caddr</span> e) a))) </span><br><span class="line">       ((<span class="name">eq</span> (<span class="name">car</span> e) ’cond) (<span class="name">evcon</span>. (<span class="name">cdr</span> e) a)) </span><br><span class="line">       (’<span class="literal">t</span> (<span class="name">eval</span>. (<span class="name">cons</span> (<span class="name">assoc</span>. (<span class="name">car</span> e) a)</span><br><span class="line">                        (<span class="name">cdr</span> e))</span><br><span class="line">                  a))))</span><br><span class="line">  ((<span class="name">eq</span> (<span class="name">caar</span> e) 'label)</span><br><span class="line">   (<span class="name">eval</span>. (<span class="name">cons</span> (<span class="name">caddar</span> e) (<span class="name">cdr</span> e))</span><br><span class="line">          (<span class="name">cons</span> (<span class="name">list</span> (<span class="name">cadar</span> e) (<span class="name">car</span> e)) a)))</span><br><span class="line">  ((<span class="name">eq</span> (<span class="name">caar</span> e) 'lambda) </span><br><span class="line">   (<span class="name">eval</span>. (<span class="name">caddar</span> e)</span><br><span class="line">          (<span class="name">append</span>, (<span class="name">pair</span>. (<span class="name">cadar</span> e) (<span class="name">evlis</span>. (<span class="name">cdr</span> e) a))</span><br><span class="line">                   a)))))</span><br><span class="line">(<span class="name">defun</span> evcon. (<span class="name">c</span> a)</span><br><span class="line">  (<span class="name">cond</span> ((<span class="name">eval</span>. (<span class="name">caar</span> c) a)</span><br><span class="line">         (<span class="name">eval</span>. (<span class="name">cadar</span> c) a))</span><br><span class="line">        ('t (<span class="name">evcon</span>. (<span class="name">cdr</span> c) a))))</span><br><span class="line">(<span class="name">defun</span> evlis. (<span class="name">m</span> a)</span><br><span class="line">  (<span class="name">cond</span> ((<span class="name">null</span>. m) '())</span><br><span class="line">        ('t (<span class="name">cons</span> (<span class="name">eval</span>. (<span class="name">car</span> m) a)</span><br><span class="line">                  (<span class="name">evlis</span>. (<span class="name">cdr</span> m) a)))))</span><br></pre></td></tr></table></figure>
+<p>The definition of eval. is longer than any of the others we’ve seen before. Let’s consider how each part works.</p>
+<p>The function takes two arguments: <code>e</code>, the expression to be evaluated, and <code>a</code>, a list representing the values that，atoms have been given by appearing as parameters in function calls. This list is called the <code>environment</code>, and it is of the form created by <code>pair.</code>. It was in order to build and search these lists that，we wrote <code>pair.</code> and <code>assoc.</code>.</p>
+<p>The spine of <code>eval.</code> is a <code>cond</code> expression with four clauses. How we evaluate an expression depends on what kind it is. The first clause handles atoms. If <code>e</code> is an atom, we look up its value in the environment:</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; (<span class="name">eval</span>. '((x a) (y b)))</span><br><span class="line">a</span><br></pre></td></tr></table></figure>
+<p>The second clause of <code>eval.</code> is another cond for handling expressions of the form <code>(a …)</code>,where a is an atom. These include all the uses of the primitive operators, and there is a clause for each one.</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; (<span class="name">eval</span>. '(eq 'a 'a) '()) </span><br><span class="line"><span class="literal">t</span></span><br><span class="line">&gt; (<span class="name">eval</span>. '(cons x '(b c))</span><br><span class="line">         '((x a) (y b)))</span><br><span class="line">(<span class="name">a</span> b c)</span><br></pre></td></tr></table></figure>
+<p>All of these (except quote) call <code>eval.</code> to find the value of the arguments.</p>
+<p>The last two clauses are more complicated. To evaluate a <code>cond</code> expression we call a subsidiary function called <code>evcon.</code>, which works its way through the clauses recursively, looking for one in which the first element returns <code>t</code>. When it finds such a clause it returns the value of the second element.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; (eval. &#39;(cond ((atom x) &#39;atom)</span><br><span class="line">                (&#39;t &#39;list))</span><br><span class="line">         &#39;((x &#39;(a b))))</span><br><span class="line">list</span><br></pre></td></tr></table></figure>
+<p>The final part of the second clause of eval. handles calls to functions that， have been passed as parameters. It works by replacing the atom with its value (which ought to be a <code>lambda</code> or <code>label</code> expression) and evaluating the resulting expression. So</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">eval</span>. '(f '(b c))</span><br><span class="line">       '((f (lambda (x) (cons 'a x)))))</span><br></pre></td></tr></table></figure>
+<p>turns into</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">eval</span>. '((lambda (x) (cons 'a x)) '(b c))</span><br><span class="line">       '((f (lambda (x) (cons 'a x)))))</span><br></pre></td></tr></table></figure>
+<p>which returns <code>(a b c)</code>.</p>
+<p>The last two clauses in eval. handle function calls in which the first ele ment is an actual <code>lambda</code> or <code>label</code> expression. A <code>label</code> expression is evaluated by pushing a list of the function name and the function it self onto the environ ment, and then calling <code>eval</code>. on an expression with the inner <code>lambda</code> expression substituted for the <code>label</code> expression. That is,</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">eval</span>. '((label firstatom (lambda (x)</span><br><span class="line">                            (cond ((atom x) x)</span><br><span class="line">                                  ('<span class="literal">t</span> (firstatom (car x))))))</span><br><span class="line">        y)</span><br><span class="line">      '((y ((a b) (c d)))))</span><br></pre></td></tr></table></figure>
+<p>becomes</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">eval</span>. '((lambda (x)</span><br><span class="line">           (cond ((atom x) x)</span><br><span class="line">                 ('<span class="literal">t</span> (firstatom (car x)))))</span><br><span class="line">        y)</span><br><span class="line">       '((firstatom</span><br><span class="line">          (label firstatom (lambda (x)</span><br><span class="line">                             (cond ((atom x) x)</span><br><span class="line">                                   ('<span class="literal">t</span> (firstatom (car x)))))))</span><br><span class="line">        (y ((a b) (c d)))))</span><br></pre></td></tr></table></figure>
+<p>which eventually returns <code>a</code>.</p>
+<p>Finally, an expression of the form <code>((lambda.(p1 … pn) e) a1 ... an)</code> is eval uated by first calling <code>evlis</code>. to get a list of values <code>(v1 … vn)</code> of the arguments <code>a1...an</code>and then evaluating <code>e</code> with <code>(p1 vi)…(pn vn)</code> appended to the front of the environment. So</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">eval</span>. '((lambda (x y) (cons x (cdr y)))</span><br><span class="line">         'a</span><br><span class="line">         '(b c d))</span><br><span class="line">       '())</span><br></pre></td></tr></table></figure>
+<p>becomes</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">eval</span>. '(cons x (cdr y))</span><br><span class="line">       '((x a) (y (b c d))))</span><br></pre></td></tr></table></figure>
+<p>which eventually returns <code>(a c d)</code>.</p>
+<h2 id="5-Aftermath"><a href="#5-Aftermath" class="headerlink" title="5 Aftermath"></a>5 Aftermath</h2><p>Now that，we understand how eval works, let’s step back and consider what it means. What we have here is a remarkably elegant model of computation. Using just <code>quote</code>, <code>atom</code>, <code>eq</code>, <code>car</code>, <code>cdr</code>, <code>cons</code>, and <code>cond</code>, we can define a function, <code>eval.</code>, that actually implements our language, and then using that，we can define any additional function we want.</p>
+<p>There were already models of computation, of course一most notably the Turing Machine. But Turing Machine programs are not very edifying to read. If you want a language for describing algorithms, you might want some thing more abstract, and that，was one of McCarthy’s aims in defining Lisp.</p>
+<p>The language he defined in 1960 was missing a lot. It has no side-effects,no sequential execution (which is useful only with side effects anyway), no practical numbers,<sup>4</sup> and dynamic scope. But these limitations can be remedied with surprisingly little additional code. Steele and Sussman show how to do it in a famous paper called “The Art of the Interpreter.”<sup>5</sup></p>
+<blockquote>
+<p><sup>4</sup> It is possible to do arithmetic in McCarthy’s 1960 Lisp by using e.g. a list of <code>n</code> atoms to represent the number <code>n</code>.<br><sup>5</sup> Guy Lewis Steele, Jr. and Gerald Jay Sussman, “The Art of the Interpreter, or the Modularity Complex (Parts Zero, One, and Two),” MIT Al Lab Memo 453, May 1978.</p>
+</blockquote>
+<p>If you understand McCarthy’s <code>eval</code>, you understand more than just a stage in the history of languages. These ideas are still the semantic core of Lisp today. So studying McCarthy’s original paper shows us, in a sense, what Lisp really is. It’s not some thing that，McCar thy designed so much as some thing he discovered. It’s not intrinsically a language for Al or for rapid prototyping, or any other task at that level. It’s what you get (of one thing you get) when you try to axiomatize computation.</p>
+<p>Over time, the median language, meaning the language used by the median programmer, has grown consistently closer to Lisp. So by understanding eval you’re understanding what will probably be the main model of computation well into the furture.</p>
+<h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h2><p>In translating McCarthy’s notation into running code I tried to change as little as possible. I was tempted to make the code easier to read, but I wanted to keep the flavor of the original.</p>
+<p>In McCarthy’s paper, falsity is represented by <code>f</code>, not the empty list. I used () to represent falsity so that，the examples would work in Common Lisp. The code nowhere depends on falsity happening also to be the empty list; nothing is ever consed onto the result returned by a predicate.</p>
+<p>I skipped building lists out of dotted pairs, because you don’t need them to understand <code>eval</code>. I also skipped mentioning <code>apply</code>, though it was <code>apply</code> (a very early form of it, whose main purpose was to quote arguments) that，McCarthy called the universal function in 1960; eval was then just a subroutine that，<code>apply</code> called to do all the work.</p>
+<p>I defined <code>list</code> and the c<code>xr</code>s as abbreviations because that’s how McCarthy did it，. In fact the c<code>xr</code>s could all have been defined as ordinary functions. So could list if we modified eval, as we easily could, to let，functions take any number of arguments.</p>
+<p>McCarthy’s paper only had five primitive operators. He used <code>cond</code> and <code>quote</code> but may have thought of them as part of his metalanguage. He likewise didn’t define the logical operators <code>and</code> and <code>not</code>, but this is less of a problem because adequate versions can be defined as functions.</p>
+<p>In the definition of <code>eval</code>. we called other functions like <code>pair</code>. and <code>assoc.</code>, but any call to one of the functions we defined in terms of the primitive operators could be replaced by a call to <code>eval .</code>.That is,</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">assoc</span>. (<span class="name">car</span> e) a)</span><br></pre></td></tr></table></figure>
+<p>could have been written as</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(eval. &#39;((label assoc.</span><br><span class="line">                (lambda (x y)</span><br><span class="line">                  (cond ((eq (caar y) x) (cadar y))</span><br><span class="line">                        (&#39;t (assoc. x (cdr y))))))</span><br><span class="line">        (car e)</span><br><span class="line">        a)</span><br><span class="line">        (cons (list &#39;e e) (cons (list &#39;a a) a)))</span><br></pre></td></tr></table></figure>
+<p>There was a small bug in McCarthy’s eval. Line 16 was (equivalent to) <code>(evlis. (cdr e) a)</code> instead of just <code>(cdr e)</code>, which caused the arguments in a call to a named function to be evaluated twice. This suggests that，this de scription of <code>eval</code> had not yet been implemented in IBM 704 machine language when the paper was submitted. It also shows how hard it is to be sure of the correctness of any length of program without trying to run it，.</p>
+<p>I encountered one other problem in McCarthy’s code. After giving the definition of <code>eval</code> he goes on to give some examples of higher-order functions一 functions that，take other functions as arguments. He defines <code>maplist</code>:</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">label</span> maplist</span><br><span class="line">       (<span class="name">lambda</span> (<span class="name">x</span> f)</span><br><span class="line">         (<span class="name">cond</span> ((<span class="name">null</span> x) '())</span><br><span class="line">               ('t (<span class="name">cons</span> (<span class="name">f</span> x) (<span class="name">maplist</span> (<span class="name">cdr</span> x) f))))))</span><br></pre></td></tr></table></figure>
+<p>then uses it to write a simple function <code>diff</code> for symbolic differentiation. But <code>diff</code> passes <code>maplist</code> a function that，uses <code>x</code> as a parameter, and the reference to it is captured by the parameter <code>x</code> within <code>maplist</code>.<sup>6</sup></p>
+<blockquote>
+<p><sup>6</sup> Present day Lisp programmers would use <code>mapcar</code> instead of <code>maplist</code> here. This example does clear up one mystery: why <code>maplist</code> is in Common Lisp at all. It was the original mapping function, and <code>mapcar</code> a later addition.</p>
+</blockquote>
+<p>It’s an eloquent testimony to the dangers of dynamic scope that，even the very first example of higher-order Lisp functions was broken because of it，. It may be that，McCarthy was not fully aware of the implications of dynamic scope in 1960. Dynamic scope remained in Lisp implementations for a surprisingly long time—until Sussman and Steele developed Scheme in 1975. Lexical scope does not complicate the definition of <code>eval</code> very much, but it may make compilers harder to write.</p>
+<p><em>end</em><br><a href="http://www.paulgraham.com/rootsoflisp.html" target="_blank" rel="noopener" title="The Original">Click Here to See the Original</a></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>胡言</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="https://ahuan.github.io/2020/02/22/%E3%80%90%E8%BD%AC%E8%BD%BD%E3%80%91the-roots-of-lisp-by-paul-graham/">https://ahuan.github.io/2020/02/22/%E3%80%90%E8%BD%AC%E8%BD%BD%E3%80%91the-roots-of-lisp-by-paul-graham/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2020 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Lisp/"># Lisp</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© 胡言 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
